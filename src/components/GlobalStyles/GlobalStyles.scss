@@ -1,10 +1,18 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&display=swap');
 
 :root {
+    --primary: #eb1d24;
+    --secondary: #2e72d2;
     --black: #000;
     --white: #fff;
-    --text-color: #1a1a1a;
-    --font-family: 'Roboto', sans-serif;
+    --text-color: #202223;
+
+    --font-family: 'Mulish', sans-serif;
+
+    --default-layout-header-height: 92px;
+    --default-layout-header-width: 1440px;
+    --default-layout-width: 930px;
 }
 
 * {
@@ -14,6 +22,18 @@
 }
 html {
     font-size: 62.5%;
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 body {
