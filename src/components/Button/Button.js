@@ -12,6 +12,7 @@ function Button({
     secondary = false,
     fb = false,
     gg = false,
+    text = false,
     children,
     className,
     leftIcon,
@@ -46,6 +47,7 @@ function Button({
         primary,
         secondary,
         disabled,
+        text,
         fb,
         gg,
     });

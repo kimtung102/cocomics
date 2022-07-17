@@ -1,12 +1,13 @@
 .wrapper {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     min-width: 100px;
-    padding: 8px 24px;
+    padding: 8px 14px;
     border-radius: 4px;
     font-size: 1.6rem;
-    font-weight: 800;
+    font-weight: 500;
     font-family: var(--font-family);
     cursor: pointer;
     background-color: var(--white);
@@ -30,9 +31,14 @@
 }
 
 .icon {
-    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 14px;
     width: 24px;
-    text-align: center;
+    height: 24px;
+    margin-top: -14px;
+    font-size: 2.6rem;
+    object-fit: cover;
 }
 
 // Button types
@@ -48,13 +54,20 @@
 }
 
 .secondary {
-    width: 350px;
-    font-weight: 600;
-    line-height: 24px;
+    width: 320px;
+    line-height: 28px;
     color: var(--white);
     background-color: var(--secondary);
     border-color: var(--secondary);
     border-radius: 999px;
+}
+
+.text {
+    color: var(--secondary);
+    background-color: transparent;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .gg {

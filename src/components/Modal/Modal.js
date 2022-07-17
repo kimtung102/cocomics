@@ -2,6 +2,10 @@ import className from 'classnames/bind';
 import styles from './Modal.module.scss';
 import logo from '~/assets/images/logo.png';
 import Button from '../Button/Button';
+import googleLogo from '~/assets/images/googleLogo.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 const cx = className.bind(styles);
 
@@ -21,13 +25,17 @@ function Modal() {
                         </div>
                         <div className={cx('inner-body')}>
                             <Button primary>Đăng nhập</Button>
-                            <Button secondary>Đăng nhập với Google</Button>
-                            <Button secondary gg>
+                            <Button secondary>Đăng nhập</Button>
+                            <Button secondary gg leftIcon={<img src={googleLogo} alt="gglogo" width={'25px'}></img>}>
                                 Đăng nhập với Google
                             </Button>
-                            <Button secondary fb>
-                                Đăng nhập với Google
+                            <Button secondary fb leftIcon={<FontAwesomeIcon icon={faFacebook} />}>
+                                Đăng nhập với Facebook
                             </Button>
+                        </div>
+                        <div>
+                            <p>Không có tài khoản?</p>
+                            <Button text>Tạo tài khoản</Button>
                         </div>
                     </div>
                 </div>
