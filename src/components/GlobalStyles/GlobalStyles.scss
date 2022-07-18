@@ -1,5 +1,5 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800&display=swap');
 
 :root {
     --primary: #eb1d24;
@@ -34,6 +34,10 @@ input,
 a {
     color: var(--text-color);
     text-decoration: none;
+}
+
+p {
+    margin: 0;
 }
 
 body {
