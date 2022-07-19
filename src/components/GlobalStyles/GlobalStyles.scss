@@ -47,6 +47,14 @@ body {
     line-height: 1.5; //defaul line-height
     overflow-y: overlay;
     color: var(--text-color);
+
+    .slick-dots li button:before {
+        font-size: 8px;
+    }
+
+    .slick-dots {
+        bottom: 40px;
+    }
 }
 
 //scroll bar
