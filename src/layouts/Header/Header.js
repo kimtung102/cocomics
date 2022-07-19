@@ -6,6 +6,7 @@ import categoryIcon from '~/assets/images/category-icon.png';
 import bxhIcon from '~/assets/images/bxh-icon.png';
 import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
+import Search from '~/components/Search/Search';
 
 const cx = className.bind(styles);
 
@@ -27,6 +28,7 @@ function Header() {
                         <img src={bxhIcon} alt="bxhIcon" className={cx('icon')} />
                         <span className={cx('title')}>BXH</span>
                     </div>
+                    <Search />
                 </div>
                 <div className={cx('right-block')}>
                     <Button primary onClick={() => setShow(true)}>

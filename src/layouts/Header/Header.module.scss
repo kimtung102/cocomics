@@ -35,6 +35,10 @@
         font-size: 1.6rem;
         font-weight: 700;
         color: #6d7175;
+
+        &:hover {
+            color: var(--primary);
+        }
     }
 
     &:hover {
