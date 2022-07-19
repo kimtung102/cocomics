@@ -1,0 +1,28 @@
+.wrapper {
+    margin-top: 76px;
+}
+
+.slider {
+    position: relative;
+    height: 400px;
+    width: 100%;
+
+    .slider-content {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url(../../assets//images/bottom-image.svg);
+        background-size: cover;
+        filter: blur(4px);
+        -webkit-filter: blur(4px);
+    }
+
+    img {
+        position: absolute;
+        width: 70%;
+        height: 85%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
