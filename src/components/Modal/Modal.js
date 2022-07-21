@@ -4,7 +4,6 @@ import logo from '~/assets/images/logo.png';
 import arrow from '~/assets/images/arrow-left.png';
 import Button from '../Button/Button';
 import googleLogo from '~/assets/images/googleLogo.png';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
@@ -96,8 +95,8 @@ function Modal({ show, type, popup }) {
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="password"
+                                            name="password"
                                             className={cx('input')}
                                         ></input>
                                     </div>
@@ -108,8 +107,8 @@ function Modal({ show, type, popup }) {
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="confirmPassword"
+                                            name="confirmPassword"
                                             className={cx('input')}
                                         ></input>
                                     </div>
@@ -140,8 +139,8 @@ function Modal({ show, type, popup }) {
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="password"
+                                            name="password"
                                             className={cx('input')}
                                         ></input>
                                     </div>
@@ -173,12 +172,7 @@ function Modal({ show, type, popup }) {
                                             Địa chỉ email
                                         </label>
                                         <br />
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            className={cx('input')}
-                                        ></input>
+                                        <input type="text" id="email" name="email" className={cx('input')}></input>
                                     </div>
                                     <div className={cx('btn-signup')}>
                                         <Button secondary>Xác nhận</Button>

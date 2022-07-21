@@ -36,7 +36,7 @@ function Header() {
                     </Button>
                 </div>
             </div>
-            <Modal show={show} type={1} popup={{ id: 2, header: 'Đăng ký với email' }} />
+            <Modal show={show} type={2} popup={{ id: 3, header: 'Đăng ký với email' }} />
         </div>
     );
 }
