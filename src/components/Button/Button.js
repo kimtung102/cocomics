@@ -13,6 +13,8 @@ function Button({
     fb = false,
     gg = false,
     text = false,
+    rounded = false,
+    large,
     children,
     className,
     leftIcon,
@@ -45,11 +47,12 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
-        secondary,
+        large,
         disabled,
         text,
         fb,
         gg,
+        rounded,
     });
 
     return (

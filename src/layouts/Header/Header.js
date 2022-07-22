@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import className from 'classnames/bind';
 import styles from './Header.module.scss';
 import logo from '~/assets/images/logo.png';
@@ -7,11 +6,21 @@ import bxhIcon from '~/assets/images/bxh-icon.png';
 import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import Search from '~/components/Search/Search';
+import { useRecoilState } from 'recoil';
+import { popupState } from '~/states/popupState';
 
 const cx = className.bind(styles);
 
 function Header() {
-    const [show, setShow] = useState(false);
+    const [popup, setPopup] = useRecoilState(popupState);
+
+    const handleLoginShow = () => {
+        setPopup(1);
+    };
+
+    const handleSignInShow = () => {
+        setPopup(2);
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -31,12 +40,15 @@ function Header() {
                     <Search />
                 </div>
                 <div className={cx('right-block')}>
-                    <Button primary onClick={() => setShow(true)}>
+                    <Button primary onClick={handleLoginShow}>
                         Đăng nhập
+                    </Button>
+                    <Button rounded onClick={handleSignInShow}>
+                        Đăng ký
                     </Button>
                 </div>
             </div>
-            <Modal show={show} type={2} popup={{ id: 3, header: 'Đăng ký với email' }} />
+            <Modal popup={popup} />
         </div>
     );
 }

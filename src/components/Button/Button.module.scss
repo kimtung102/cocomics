@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     min-width: 70px;
-    padding: 8px 14px;
+    padding: 7px 16px;
     border-radius: 4px;
     font-size: 1.6rem;
     font-weight: 500;
@@ -17,6 +17,7 @@
 
     + .wrapper {
         margin-top: 8px;
+        margin-left: 8px;
     }
 
     &.disabled {
@@ -45,6 +46,20 @@
 .primary {
     color: var(--white);
     background-color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 999px;
+    font-weight: 600;
+    &:hover {
+        border-color: var(--primary);
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
+}
+
+.large {
+    width: 320px;
+    line-height: 28px;
+    color: var(--white);
+    background-color: var(--primary);
     border-color: var(--primary);
     border-radius: 999px;
     &:hover {
@@ -53,13 +68,15 @@
     }
 }
 
-.secondary {
-    width: 320px;
-    line-height: 28px;
-    color: var(--white);
-    background-color: var(--secondary);
-    border-color: var(--secondary);
+.rounded {
     border-radius: 999px;
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-weight: 700;
+
+    &:hover {
+        background-color: #fff3f5;
+    }
 }
 
 .text {
@@ -76,4 +93,8 @@
     background-color: #ffffff;
     border-color: #ffffff;
     color: var(--black);
+}
+
+.fb {
+    background-color: var(--secondary);
 }
