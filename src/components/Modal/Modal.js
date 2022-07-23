@@ -2,6 +2,7 @@ import className from 'classnames/bind';
 import styles from './Modal.module.scss';
 import arrow from '~/assets/images/arrow-left.png';
 import Button from '../Button/Button';
+import backIcon from '~/assets/images/back-icon.svg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
@@ -25,7 +26,7 @@ function Modal({ popup }) {
                         {popup === 1 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(0)}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
                                 <p className={cx('title')}>Đăng nhập</p>
                             </div>
@@ -33,7 +34,7 @@ function Modal({ popup }) {
                         {popup === 2 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(1)}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
                                 <p className={cx('title')}>Đăng ký</p>
                             </div>
@@ -41,13 +42,13 @@ function Modal({ popup }) {
                         {popup === 3 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(2)}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
                                 <p className={cx('title')}>Quên mật khẩu</p>
                             </div>
                         )}
                         <span className={cx('cancel')} onClick={() => setP(0)}>
-                            <FontAwesomeIcon icon={faXmark} />
+                            <img src={backIcon} alt="back" width={'20px'}></img>
                         </span>
                         <div className={cx('modal-inner')}>
                             {popup === 2 && (
@@ -65,7 +66,7 @@ function Modal({ popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="password" className={cx('label')}>
                                             Mật khẩu
                                         </label>
                                         <br />
@@ -77,7 +78,7 @@ function Modal({ popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="confirmPassword" className={cx('label')}>
                                             Nhập lại mật khẩu
                                         </label>
                                         <br />
@@ -109,7 +110,7 @@ function Modal({ popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="password" className={cx('label')}>
                                             Mật khẩu
                                         </label>
                                         <br />
@@ -146,7 +147,7 @@ function Modal({ popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="email" className={cx('label')}>
                                             Địa chỉ email
                                         </label>
                                         <br />
