@@ -1,11 +1,9 @@
 .wrapper-small-1 {
-    font-size: 1.4rem;
     min-width: 100px;
     width: 100px;
-
-    + .wrapper-small-1 {
-        margin-left: 18px;
-    }
+    // + .wrapper-small-1 {
+    //     margin-left: 18px;
+    // }
 
     a {
         &:hover {
@@ -22,13 +20,14 @@
         display: block;
         font-weight: 700;
         color: #202223;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         line-height: 1.6rem;
     }
 
     .category {
         font-weight: 500;
         color: #676767;
+        font-size: 1.3rem;
     }
 }
 
@@ -72,7 +71,7 @@
 
 .wrapper-large-1 {
     width: 340px;
-    height: 415px;
+    height: 405px;
     background-color: #f6f7fc;
 
     a {
