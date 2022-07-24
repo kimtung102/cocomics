@@ -1,0 +1,121 @@
+.wrapper-small-1 {
+    font-size: 1.4rem;
+    min-width: 100px;
+    width: 100px;
+
+    + .wrapper-small-1 {
+        margin-left: 18px;
+    }
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .card-image {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .title {
+        display: block;
+        font-weight: 700;
+        color: #202223;
+        font-size: 1.5rem;
+        line-height: 1.6rem;
+    }
+
+    .category {
+        font-weight: 500;
+        color: #676767;
+    }
+}
+
+.wrapper-small-2 {
+    display: flex;
+    font-size: 1.2rem;
+    min-width: 100px;
+    width: 160px;
+
+    + .wrapper-small-2 {
+        margin-bottom: 24px;
+    }
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .card-image {
+        display: block;
+        margin-right: 4px;
+    }
+
+    .content {
+        margin-top: 2px;
+        .title {
+            display: block;
+            font-weight: 700;
+            color: #202223;
+            line-height: 1.4rem;
+            margin-bottom: 2px;
+        }
+
+        .category {
+            font-weight: 500;
+            color: #676767;
+        }
+    }
+}
+
+.wrapper-large-1 {
+    width: 340px;
+    height: 415px;
+    background-color: #f6f7fc;
+
+    a {
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .image {
+        height: 190px;
+        background-color: azure;
+
+        img {
+            width: 100%;
+            height: 100%; // de tam sau xoa
+        }
+    }
+
+    .content {
+        .header {
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            .title {
+                display: block;
+                font-size: 2rem;
+            }
+
+            .category {
+                font-size: 1.4rem;
+            }
+        }
+
+        .summary {
+            font-size: 1.5rem;
+            font-weight: 500;
+            overflow: hidden;
+            padding: 0 1.2rem;
+            text-align: justify;
+            display: -webkit-box;
+            -webkit-line-clamp: 6; //line display
+            -webkit-box-orient: vertical;
+        }
+    }
+}

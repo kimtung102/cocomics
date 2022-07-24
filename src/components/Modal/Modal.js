@@ -1,81 +1,57 @@
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
-import logo from '~/assets/images/logo.png';
 import arrow from '~/assets/images/arrow-left.png';
 import Button from '../Button/Button';
-import googleLogo from '~/assets/images/googleLogo.png';
+import backIcon from '~/assets/images/back-icon.svg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { useRecoilState } from 'recoil';
+import { popupState } from '~/states/popupState';
 
 const cx = className.bind(styles);
 
-function Modal({ show, type, popup }) {
-    if (!show) {
+function Modal({ popup }) {
+    const [p, setP] = useRecoilState(popupState);
+
+    if (popup === 0) {
         return null;
     } else
         return (
             <div className={cx('modal')}>
                 <div className={cx('modal-overlay')}></div>
-                <div className={type === 1 ? cx('modal-body') : cx('modal-body-2')}>
+                <div className={cx('modal-body')}>
                     <div className={cx('modal-linear')}>
-                        {type === 2 && popup.id === 2 && (
+                        {popup === 1 && (
                             <div className={cx('popup-title')}>
-                                <span className={cx('back')}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                <span className={cx('back')} onClick={() => setP(0)}>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
-                                <p className={cx('title')}>{popup.header}</p>
+                                <p className={cx('title')}>Đăng nhập</p>
                             </div>
                         )}
-                        {type === 2 && popup.id === 3 && (
+                        {popup === 2 && (
                             <div className={cx('popup-title')}>
-                                <span className={cx('back')}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                <span className={cx('back')} onClick={() => setP(1)}>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
-                                <p className={cx('title')}>{popup.header}</p>
+                                <p className={cx('title')}>Đăng ký</p>
                             </div>
                         )}
-                        {type === 2 && popup.id === 4 && (
+                        {popup === 3 && (
                             <div className={cx('popup-title')}>
-                                <span className={cx('back')}>
-                                    <img src={arrow} alt="arrow" width={'24px'}></img>
+                                <span className={cx('back')} onClick={() => setP(2)}>
+                                    <img src={arrow} alt="arrow" width={'22px'}></img>
                                 </span>
-                                <p className={cx('title')}>{popup.header}</p>
+                                <p className={cx('title')}>Quên mật khẩu</p>
                             </div>
                         )}
-
-                        <span className={cx('cancel')}>
-                            <FontAwesomeIcon icon={faXmark} />
+                        <span className={cx('cancel')} onClick={() => setP(0)}>
+                            <img src={backIcon} alt="back" width={'20px'}></img>
                         </span>
                         <div className={cx('modal-inner')}>
-                            {type === 1 && (
-                                <div className={cx('inner-header')}>
-                                    <img src={logo} alt="logo" className={cx('logo')}></img>
-                                    <p className={cx('header')}>Chào mừng đến với Cocomics</p>
-                                    <p className={cx('sub-header')}>
-                                        Truy cập hàng tấn tiểu thuyết và truyện tranh chỉ bằng một lần nhấn
-                                    </p>
-                                </div>
-                            )}
-
-                            {type === 1 && (
-                                <div className={cx('inner-body')}>
-                                    <Button
-                                        secondary
-                                        gg
-                                        leftIcon={<img src={googleLogo} alt="gglogo" width={'25px'}></img>}
-                                    >
-                                        Đăng nhập với Google
-                                    </Button>
-                                    <Button secondary leftIcon={<FontAwesomeIcon icon={faFacebook} />}>
-                                        Đăng nhập với Facebook
-                                    </Button>
-                                </div>
-                            )}
-
-                            {type === 2 && popup.id === 2 && (
+                            {popup === 2 && (
                                 <div className={cx('form-wrapper')}>
                                     <div className={cx('form-item')}>
                                         <label htmlFor="username" className={cx('label')}>
@@ -90,36 +66,36 @@ function Modal({ show, type, popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="password" className={cx('label')}>
                                             Mật khẩu
                                         </label>
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="password"
+                                            name="password"
                                             className={cx('input')}
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="confirmPassword" className={cx('label')}>
                                             Nhập lại mật khẩu
                                         </label>
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="confirmPassword"
+                                            name="confirmPassword"
                                             className={cx('input')}
                                         ></input>
                                     </div>
 
                                     <div className={cx('btn-signup')}>
-                                        <Button secondary>Đăng ký</Button>
+                                        <Button large>Đăng ký</Button>
                                     </div>
                                 </div>
                             )}
-                            {type === 2 && popup.id === 3 && (
+                            {popup === 1 && (
                                 <div className={cx('form-wrapper')}>
                                     <div className={cx('form-item')}>
                                         <label htmlFor="username" className={cx('label')}>
@@ -134,27 +110,29 @@ function Modal({ show, type, popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="password" className={cx('label')}>
                                             Mật khẩu
                                         </label>
                                         <br />
                                         <input
                                             type="password"
-                                            id="username"
-                                            name="username"
+                                            id="password"
+                                            name="password"
                                             className={cx('input')}
                                         ></input>
                                     </div>
 
                                     <div className={cx('btn-signup')}>
-                                        <Button secondary>Đăng Nhập</Button>
+                                        <Button large>Đăng Nhập</Button>
                                         <div className={cx('btn-forgot')}>
-                                            <Button text>Quên mật khẩu?</Button>
+                                            <Button text onClick={() => setP(3)}>
+                                                Quên mật khẩu?
+                                            </Button>
                                         </div>
                                     </div>
                                 </div>
                             )}
-                            {type === 2 && popup.id === 4 && (
+                            {popup === 3 && (
                                 <div className={cx('form-wrapper')}>
                                     <div className={cx('form-item')}>
                                         <label htmlFor="username" className={cx('label')}>
@@ -169,40 +147,33 @@ function Modal({ show, type, popup }) {
                                         ></input>
                                     </div>
                                     <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
+                                        <label htmlFor="email" className={cx('label')}>
                                             Địa chỉ email
                                         </label>
                                         <br />
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            className={cx('input')}
-                                        ></input>
+                                        <input type="text" id="email" name="email" className={cx('input')}></input>
                                     </div>
                                     <div className={cx('btn-signup')}>
-                                        <Button secondary>Xác nhận</Button>
+                                        <Button large>Xác nhận</Button>
                                     </div>
                                 </div>
                             )}
                         </div>
                         <div className={cx('inner-sign')}>
-                            {type === 1 && (
-                                <>
-                                    <p className={cx('sign-text')}>Không có tài khoản?</p>
-                                    <Button text>Tạo tài khoản</Button>
-                                </>
-                            )}
-                            {type === 2 && popup.id === 2 && (
-                                <>
-                                    <p className={cx('sign-text')}>Đã có tài khoản?</p>
-                                    <Button text>Đăng nhập</Button>
-                                </>
-                            )}
-                            {type === 2 && popup.id === 3 && (
+                            {popup === 1 && (
                                 <>
                                     <p className={cx('sign-text')}>Chưa có tài khoản?</p>
-                                    <Button text>Đăng ký</Button>
+                                    <Button text onClick={() => setP(2)}>
+                                        Đăng ký
+                                    </Button>
+                                </>
+                            )}
+                            {popup === 2 && (
+                                <>
+                                    <p className={cx('sign-text')}>Đã có tài khoản?</p>
+                                    <Button text onClick={() => setP(1)}>
+                                        Đăng nhập
+                                    </Button>
                                 </>
                             )}
                         </div>
