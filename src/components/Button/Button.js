@@ -14,6 +14,8 @@ function Button({
     gg = false,
     text = false,
     rounded = false,
+    keyword = false,
+    small = false,
     large,
     children,
     className,
@@ -53,6 +55,8 @@ function Button({
         fb,
         gg,
         rounded,
+        keyword,
+        small,
     });
 
     return (

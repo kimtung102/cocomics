@@ -4,7 +4,7 @@
     display: flex;
     position: relative;
     height: 38px;
-    width: 300px;
+    width: 350px;
     border: 1px solid #babfc4;
     border-radius: 999px;
 
@@ -16,7 +16,6 @@
         font-size: 1.6rem;
         background-color: transparent;
         color: var(--text-color);
-        caret-color: var(--primary);
     }
 
     .search-icon {
