@@ -16,6 +16,14 @@
     border-bottom: 1px solid #dadada;
 }
 
+.title-no-border {
+    color: var(--text-color);
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 1px solid transparent;
+}
+
 .trending {
     .trending-inner {
         display: flex;
@@ -33,4 +41,51 @@
 
 .ranking {
     margin-top: 30px;
+
+    .ranking-inner {
+        height: 450px;
+        background-color: #6a6a6a;
+    }
+}
+
+.funny-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    .left {
+        width: 60%;
+        background-color: #6a6a6a;
+    }
+
+    .right {
+        flex: 1;
+        margin-left: 20px;
+
+        .right-inner {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+    }
+}
+
+.new-comic {
+    margin-top: 30px;
+
+    .new-inner {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.keyword {
+    margin-top: 30px;
+
+    .keyword-inner {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
 }

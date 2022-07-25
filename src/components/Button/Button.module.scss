@@ -89,6 +89,16 @@
     }
 }
 
+.keyword {
+    color: #3e87ab;
+    box-shadow: 0px 0px 8px 2px rgba(0, 14, 51, 0.15);
+    padding: 4px 8px;
+    font-size: 1.4rem;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .gg {
     background-color: #ffffff;
     border-color: #ffffff;
