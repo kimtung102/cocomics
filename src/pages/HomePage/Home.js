@@ -9,6 +9,7 @@ import MySlider from '~/components/Slider/MySlider';
 import SmallCard1 from '~/components/ComicCard/SmallCard1';
 import Button from '~/components/Button/Button';
 import LargeCard2 from '~/components/ComicCard/LargeCard2';
+import Banner from '~/components/ComicCard/Banner';
 
 const cx = className.bind(styles);
 
@@ -37,9 +38,30 @@ function Home() {
                             </div>
                         </div>
                     </div>
+                    <div className={cx('banner')}>
+                        <Banner />
+                        <Banner />
+                    </div>
                     <div className={cx('ranking')}>
                         <p className={cx('title')}>Xếp hạng</p>
-                        <div className={cx('ranking-inner')}></div>
+                        <div className={cx('ranking-inner')}>
+                            <div className={cx('row')}>
+                                <h4 className={cx('rank-title')}>Top ngày</h4>
+                                <div className={cx('rank-list')}>
+                                    <SmallCard2 />
+                                    <SmallCard2 />
+                                    <SmallCard2 />
+                                    <SmallCard2 />
+                                    <SmallCard2 />
+                                </div>
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('rank-title')}>Top tuần</h4>
+                            </div>
+                            <div className={cx('row')}>
+                                <h4 className={cx('rank-title')}>Top tháng</h4>
+                            </div>
+                        </div>
                     </div>
                     <div className={cx('funny-wrapper')}>
                         <div className={cx('left')}>

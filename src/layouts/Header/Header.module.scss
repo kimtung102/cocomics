@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    height: 75px;
+    height: 80px;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     background-color: #f8f8f8;
     z-index: 1000;
@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 892px;
+    width: 980px;
 }
 
 .left-block {
@@ -22,7 +22,7 @@
     align-items: center;
 
     .logo {
-        margin-right: 40px;
+        margin-right: 46px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -38,11 +38,11 @@
 .header-item {
     display: flex;
     align-items: center;
-    margin-right: 36px;
+    margin-right: 40px;
 
     .title {
         margin-left: 5px;
-        font-size: 1.6rem;
+        font-size: 1.7rem;
         font-weight: 700;
         color: #6d7175;
 

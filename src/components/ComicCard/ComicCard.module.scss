@@ -1,6 +1,6 @@
 .wrapper-small-1 {
     min-width: 100px;
-    width: 100px;
+    width: 106px;
     // + .wrapper-small-1 {
     //     margin-left: 18px;
     // }
@@ -37,10 +37,6 @@
     min-width: 100px;
     width: 156px;
 
-    + .wrapper-small-2 {
-        margin-bottom: 24px;
-    }
-
     a {
         &:hover {
             text-decoration: underline;
@@ -70,8 +66,8 @@
 }
 
 .wrapper-large-1 {
-    width: 340px;
-    height: 405px;
+    width: 356px;
+    height: 420px;
     background-color: #ececec;
     border-radius: 6px;
     a {
@@ -81,7 +77,7 @@
     }
 
     .image {
-        height: 190px;
+        height: 200px;
         background-color: rgb(44, 226, 226);
         border-radius: 6px;
         img {
