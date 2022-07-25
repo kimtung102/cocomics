@@ -26,7 +26,7 @@ function Modal({ popup }) {
                         {popup === 1 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(0)}>
-                                    <img src={arrow} alt="arrow" width={'22px'}></img>
+                                    <img src={arrow} alt="arrow" width={'20px'}></img>
                                 </span>
                                 <p className={cx('title')}>Đăng nhập</p>
                             </div>
@@ -34,7 +34,7 @@ function Modal({ popup }) {
                         {popup === 2 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(1)}>
-                                    <img src={arrow} alt="arrow" width={'22px'}></img>
+                                    <img src={arrow} alt="arrow" width={'20px'}></img>
                                 </span>
                                 <p className={cx('title')}>Đăng ký</p>
                             </div>
@@ -42,13 +42,13 @@ function Modal({ popup }) {
                         {popup === 3 && (
                             <div className={cx('popup-title')}>
                                 <span className={cx('back')} onClick={() => setP(2)}>
-                                    <img src={arrow} alt="arrow" width={'22px'}></img>
+                                    <img src={arrow} alt="arrow" width={'20px'}></img>
                                 </span>
                                 <p className={cx('title')}>Quên mật khẩu</p>
                             </div>
                         )}
                         <span className={cx('cancel')} onClick={() => setP(0)}>
-                            <img src={backIcon} alt="back" width={'20px'}></img>
+                            <img src={backIcon} alt="back" width={'17px'}></img>
                         </span>
                         <div className={cx('modal-inner')}>
                             {popup === 2 && (
