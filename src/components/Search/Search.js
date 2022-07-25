@@ -1,7 +1,7 @@
 import className from 'classnames/bind';
 import styles from './Search.module.scss';
 
-import searchIcon from '~/assets/images/search-icon.png';
+import searchIcon from '~/assets/images/search-icon.svg';
 
 const cx = className.bind(styles);
 

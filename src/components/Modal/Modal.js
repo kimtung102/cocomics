@@ -1,12 +1,11 @@
 import className from 'classnames/bind';
 import styles from './Modal.module.scss';
-import arrow from '~/assets/images/arrow-left.png';
+import arrow from '~/assets/images/arrow-left.svg';
 import Button from '../Button/Button';
 import backIcon from '~/assets/images/back-icon.svg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useRecoilState } from 'recoil';
 import { popupState } from '~/states/popupState';
 
