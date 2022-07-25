@@ -16,7 +16,6 @@
     user-select: none;
 
     + .wrapper {
-        margin-top: 8px;
         margin-left: 8px;
     }
 
@@ -107,4 +106,8 @@
 
 .fb {
     background-color: var(--secondary);
+}
+
+.small {
+    padding: 4px 20px;
 }

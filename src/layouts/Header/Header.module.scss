@@ -29,10 +29,16 @@
     }
 }
 
+.right-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .header-item {
     display: flex;
     align-items: center;
-    margin-right: 40px;
+    margin-right: 36px;
 
     .title {
         margin-left: 5px;
@@ -41,7 +47,7 @@
         color: #6d7175;
 
         &:hover {
-            color: var(--primary);
+            color: #8e9397;
         }
     }
 
