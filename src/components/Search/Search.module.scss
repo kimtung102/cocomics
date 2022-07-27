@@ -14,8 +14,13 @@
         padding-left: 40px;
         padding-right: 20px;
         font-size: 1.6rem;
+        border-radius: 999px;
         background-color: transparent;
         color: var(--text-color);
+
+        &:focus {
+            border: 1px solid #777777;
+        }
     }
 
     .search-icon {
