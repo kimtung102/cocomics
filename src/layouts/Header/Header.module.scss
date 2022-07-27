@@ -55,3 +55,31 @@
         cursor: pointer;
     }
 }
+
+.category-popover {
+    display: flex;
+    position: relative;
+    justify-content: start;
+    width: 524px;
+    height: 292px;
+    padding: 25px;
+    background-color: #25262f;
+    border-radius: 8px;
+
+    .category-column {
+        width: 30%;
+        margin-right: 10px;
+        a {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            font-size: 1.8rem;
+            padding: 6px 12px;
+            &:hover {
+                cursor: pointer;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 4px;
+            }
+        }
+    }
+}
