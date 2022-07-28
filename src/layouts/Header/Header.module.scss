@@ -70,7 +70,7 @@
 .category-popover {
     display: flex;
     position: relative;
-    justify-content: start;
+    justify-content: flex-start;
     width: 524px;
     height: 292px;
     padding: 25px;
@@ -84,7 +84,7 @@
             display: block;
             color: rgba(255, 255, 255, 0.8);
             font-weight: 600;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             padding: 6px 12px;
             &:hover {
                 background-color: rgba(0, 0, 0, 0.5);
@@ -96,10 +96,10 @@
 
 .user-popover {
     width: 280px;
-    height: 340px;
+    height: 334px;
     background-color: #25262f;
     border-radius: 10px;
-    padding: 20px 40px 40px 40px;
+    padding: 20px 30px 30px 30px;
 
     .info {
         color: var(--white);
@@ -122,13 +122,13 @@
     }
 
     .option {
-        margin-top: 36px;
+        margin-top: 30px;
 
         a {
             display: block;
             color: var(--white);
             font-weight: 600;
-            font-size: 1.7rem;
+            font-size: 1.6rem;
             padding: 8px 12px;
             margin-bottom: 2px;
 

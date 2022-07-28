@@ -3,20 +3,20 @@
 .search {
     display: flex;
     position: relative;
-    height: 38px;
+    height: 40px;
     width: 370px;
-    border: 1px solid #babfc4;
     border-radius: 999px;
+    border: 1px solid #babfc4;
 
     input {
         flex: 1;
         height: 100%;
         padding-left: 40px;
-        padding-right: 20px;
+        padding-right: 40px;
         font-size: 1.6rem;
         border-radius: 999px;
-        background-color: transparent;
         color: var(--text-color);
+        border: 1px solid transparent;
 
         &:focus {
             border: 1px solid #777777;
@@ -25,7 +25,81 @@
 
     .search-icon {
         position: absolute;
-        top: 9px;
-        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 14px;
+    }
+}
+
+.search-popover {
+    width: 370px;
+    min-height: 100px;
+    border-radius: 8px;
+    background-color: var(--white);
+    max-height: min((100vh - 96px) - 60px, 734px);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    padding: 10px 0px;
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+.search-avatar {
+    width: 50px;
+    margin-right: 5px;
+}
+
+.search-info {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: var(--text-color);
+
+    .info-title {
+        font-weight: 600;
+    }
+
+    .info-category {
+        font-size: 1.2rem;
+        color: #676767;
+    }
+
+    .info-summary {
+        margin-top: 6px;
+        line-height: 1.4rem;
+        font-size: 1.2rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; //line display
+        -webkit-box-orient: vertical;
+    }
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(22, 24, 35, 0.34);
+}
+
+.loading {
+    animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
     }
 }
