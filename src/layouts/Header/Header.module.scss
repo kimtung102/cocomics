@@ -95,11 +95,11 @@
 }
 
 .user-popover {
-    width: 280px;
-    height: 334px;
+    width: 250px;
+    height: 290px;
     background-color: #25262f;
     border-radius: 10px;
-    padding: 20px 30px 30px 30px;
+    padding: 20px 20px 20px 30px;
 
     .info {
         color: var(--white);
@@ -122,19 +122,20 @@
     }
 
     .option {
-        margin-top: 30px;
+        margin-top: 20px;
 
         a {
             display: block;
             color: var(--white);
             font-weight: 600;
-            font-size: 1.6rem;
-            padding: 8px 12px;
+            font-size: 1.5rem;
+            padding: 6px 8px;
             margin-bottom: 2px;
 
             &:hover {
                 background-color: rgba(0, 0, 0, 0.5);
                 border-radius: 6px;
+                cursor: pointer;
             }
         }
     }
