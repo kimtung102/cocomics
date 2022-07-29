@@ -3,6 +3,7 @@ import axios from 'axios';
 const instance = axios.create({
     baseURL: 'https://apicocomic.herokuapp.com/rest/Service',
     headers: {
+        'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
     },
 });
