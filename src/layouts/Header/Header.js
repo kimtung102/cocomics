@@ -15,7 +15,7 @@ const cx = className.bind(styles);
 
 function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
-    const currentUser = true;
+    const currentUser = false;
 
     const handleLoginShow = () => {
         setPopup(1);

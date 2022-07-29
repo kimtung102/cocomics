@@ -4,12 +4,33 @@ import arrow from '~/assets/images/arrow-left.svg';
 import Button from '../Button/Button';
 import backIcon from '~/assets/images/back-icon.svg';
 
+import { Formik, Form } from 'formik';
+import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { useRecoilState } from 'recoil';
 import { popupState } from '~/states/popupState';
+import InputField from './InputField';
 
 const cx = className.bind(styles);
+
+const schemaLogin = yup.object().shape({
+    username: yup.string().required('Vui lòng nhập tên tài khoản!'),
+    password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 kí tự!').required('Vui lòng nhập mật khẩu!'),
+});
+
+const schemaSignup = yup.object().shape({
+    username: yup.string().required('Vui lòng nhập tên tài khoản!'),
+    password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 kí tự!').required('Vui lòng nhập mật khẩu!'),
+    confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('password'), null], 'Mật khẩu không khớp vui lòng kiểm tra lại!')
+        .required('Vui lòng xác nhận mật khẩu của bạn!'),
+});
+
+const schemaForgot = yup.object().shape({
+    username: yup.string().required('Vui lòng nhập tên tài khoản!'),
+});
 
 function Modal({ popup }) {
     const [p, setP] = useRecoilState(popupState);
@@ -51,111 +72,126 @@ function Modal({ popup }) {
                         </span>
                         <div className={cx('modal-inner')}>
                             {popup === 2 && (
-                                <div className={cx('form-wrapper')}>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
-                                            Tên đăng nhập
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="password" className={cx('label')}>
-                                            Mật khẩu
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="confirmPassword" className={cx('label')}>
-                                            Nhập lại mật khẩu
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="password"
-                                            id="confirmPassword"
-                                            name="confirmPassword"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-
-                                    <div className={cx('btn-signup')}>
-                                        <Button large>Đăng ký</Button>
-                                    </div>
-                                </div>
+                                <Formik
+                                    validationSchema={schemaSignup}
+                                    onSubmit={(val) => console.log(val)}
+                                    initialValues={{
+                                        username: '',
+                                        password: '',
+                                        confirmPassword: '',
+                                    }}
+                                >
+                                    {({ handleSubmit, touched, errors }) => (
+                                        <div className={cx('form-wrapper')}>
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <InputField
+                                                    label="Tên đăng nhập"
+                                                    type="text"
+                                                    id="username"
+                                                    name="username"
+                                                    className={cx('input')}
+                                                    isInvalid={touched.username && !!errors.username}
+                                                    message={errors.username}
+                                                />
+                                                <InputField
+                                                    label="Mật khẩu"
+                                                    type="password"
+                                                    id="password"
+                                                    name="password"
+                                                    className={cx('input')}
+                                                    isInvalid={touched.password && !!errors.password}
+                                                    message={errors.password}
+                                                />
+                                                <InputField
+                                                    label="Nhập lại mật khẩu"
+                                                    type="password"
+                                                    id="confirmPassword"
+                                                    name="confirmPassword"
+                                                    className={cx('input')}
+                                                    isInvalid={touched.confirmPassword && !!errors.confirmPassword}
+                                                    message={errors.confirmPassword}
+                                                />
+                                                <div className={cx('btn-signup')}>
+                                                    <Button large type="submit">
+                                                        Đăng ký
+                                                    </Button>
+                                                </div>
+                                            </Form>
+                                        </div>
+                                    )}
+                                </Formik>
                             )}
                             {popup === 1 && (
-                                <div className={cx('form-wrapper')}>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
-                                            Tên đăng nhập/ Email
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="password" className={cx('label')}>
-                                            Mật khẩu
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="password"
-                                            id="password"
-                                            name="password"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-
-                                    <div className={cx('btn-signup')}>
-                                        <Button large>Đăng Nhập</Button>
-                                        <div className={cx('btn-forgot')}>
-                                            <Button text onClick={() => setP(3)}>
-                                                Quên mật khẩu?
-                                            </Button>
+                                <Formik
+                                    validationSchema={schemaLogin}
+                                    onSubmit={(val) => console.log(val)}
+                                    initialValues={{
+                                        username: '',
+                                        password: '',
+                                    }}
+                                >
+                                    {({ handleSubmit, touched, errors }) => (
+                                        <div className={cx('form-wrapper')}>
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <InputField
+                                                    label="Tên đăng nhập/ Email"
+                                                    type="text"
+                                                    id="username"
+                                                    name="username"
+                                                    isInvalid={touched.username && !!errors.username}
+                                                    message={errors.username}
+                                                />
+                                                <InputField
+                                                    label="Mật khẩu"
+                                                    type="password"
+                                                    id="password"
+                                                    name="password"
+                                                    isInvalid={touched.password && !!errors.password}
+                                                    message={errors.password}
+                                                />
+                                                <div className={cx('btn-signup')}>
+                                                    <Button large type="submit">
+                                                        Đăng Nhập
+                                                    </Button>
+                                                    <div className={cx('btn-forgot')}>
+                                                        <Button text onClick={() => setP(3)}>
+                                                            Quên mật khẩu?
+                                                        </Button>
+                                                    </div>
+                                                </div>
+                                            </Form>
                                         </div>
-                                    </div>
-                                </div>
+                                    )}
+                                </Formik>
                             )}
                             {popup === 3 && (
-                                <div className={cx('form-wrapper')}>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="username" className={cx('label')}>
-                                            Tên đăng nhập
-                                        </label>
-                                        <br />
-                                        <input
-                                            type="text"
-                                            id="username"
-                                            name="username"
-                                            className={cx('input')}
-                                        ></input>
-                                    </div>
-                                    <div className={cx('form-item')}>
-                                        <label htmlFor="email" className={cx('label')}>
-                                            Địa chỉ email
-                                        </label>
-                                        <br />
-                                        <input type="text" id="email" name="email" className={cx('input')}></input>
-                                    </div>
-                                    <div className={cx('btn-signup')}>
-                                        <Button large>Xác nhận</Button>
-                                    </div>
-                                </div>
+                                <Formik
+                                    validationSchema={schemaForgot}
+                                    onSubmit={(val) => console.log(val)}
+                                    initialValues={{
+                                        username: '',
+                                    }}
+                                >
+                                    {({ handleSubmit, touched, errors }) => (
+                                        <div className={cx('form-wrapper')}>
+                                            <Form noValidate onSubmit={handleSubmit}>
+                                                <InputField
+                                                    label="Tên đăng nhập"
+                                                    type="text"
+                                                    id="username"
+                                                    name="username"
+                                                    isInvalid={touched.username && !!errors.username}
+                                                    message={errors.username}
+                                                />
+                                                <div className={cx('btn-signup')}>
+                                                    <Button large type="submit">
+                                                        Xác nhận
+                                                    </Button>
+                                                </div>
+                                            </Form>
+                                        </div>
+                                    )}
+                                </Formik>
                             )}
                         </div>
                         <div className={cx('inner-sign')}>

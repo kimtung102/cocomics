@@ -12,26 +12,26 @@ const cx = className.bind(styles);
 
 function Search() {
     return (
-        <Tippy
-            interactive
-            placement="bottom"
-            render={(attrs) => (
-                <div className={cx('search-popover')} {...attrs}>
-                    <SearchPopover />
-                    <SearchPopover />
-                    <SearchPopover />
-                </div>
-            )}
-        >
-            <div className={cx('search')}>
-                <img src={searchIcon} alt="searchIcon" className={cx('search-icon')} />
-                <input type="text" id="search" name="search" placeholder="Tìm kiếm..."></input>
-                <button className={cx('clear')}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
-                </button>
-                <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
-            </div>
-        </Tippy>
+        // <Tippy
+        //     interactive
+        //     placement="bottom"
+        //     render={(attrs) => (
+        //         <div className={cx('search-popover')} {...attrs}>
+        //             {/* <SearchPopover />
+        //             <SearchPopover />
+        //             <SearchPopover /> */}
+        //         </div>
+        //     )}
+        // >
+        <div className={cx('search')}>
+            <img src={searchIcon} alt="searchIcon" className={cx('search-icon')} />
+            <input type="text" id="search" name="search" placeholder="Tìm kiếm..."></input>
+            <button className={cx('clear')}>
+                <FontAwesomeIcon icon={faCircleXmark} />
+            </button>
+            <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />
+        </div>
+        // </Tippy>
     );
 }
 
