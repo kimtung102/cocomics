@@ -4,6 +4,7 @@ import arrow from '~/assets/images/arrow-left.svg';
 import Button from '../Button/Button';
 import backIcon from '~/assets/images/back-icon.svg';
 
+import { post, get } from '~/utils/httpRequest';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -34,6 +35,22 @@ const schemaForgot = yup.object().shape({
 
 function Modal({ popup }) {
     const [p, setP] = useRecoilState(popupState);
+
+    const handleRegister = async (value) => {
+        console.log(value);
+        const data = {
+            accountName: value.username,
+            password: value.password,
+            nickName: 'tungtest',
+        };
+        console.log(data);
+        try {
+            const res = await post('/register', JSON.stringify(data));
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     if (popup === 0) {
         return null;
@@ -74,7 +91,7 @@ function Modal({ popup }) {
                             {popup === 2 && (
                                 <Formik
                                     validationSchema={schemaSignup}
-                                    onSubmit={(val) => console.log(val)}
+                                    onSubmit={(val) => handleRegister(val)}
                                     initialValues={{
                                         username: '',
                                         password: '',
@@ -124,7 +141,7 @@ function Modal({ popup }) {
                             {popup === 1 && (
                                 <Formik
                                     validationSchema={schemaLogin}
-                                    onSubmit={(val) => console.log(val)}
+                                    onSubmit={(val) => handleRegister(val)}
                                     initialValues={{
                                         username: '',
                                         password: '',
