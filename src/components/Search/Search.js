@@ -38,10 +38,13 @@ function Search() {
         setLoading(true);
 
         const fetch = async () => {
-            const res = get('/search-comic-by-name', {
-                params: encodeURIComponent(debouncedValue),
+            const res = await get('/search-comic-by-name', {
+                params: {
+                    name: encodeURIComponent(debouncedValue),
+                },
             });
             console.log(res);
+            setSearchResult(res);
             setLoading(false);
         };
 
@@ -54,9 +57,9 @@ function Search() {
             visible={isInputFocus && searchResult.length > 0}
             render={(attrs) => (
                 <div className={cx('search-popover')} {...attrs}>
-                    <SearchPopover />
-                    <SearchPopover />
-                    <SearchPopover />
+                    {searchResult.map((comic) => (
+                        <SearchPopover key={comic.id} data={comic} />
+                    ))}
                 </div>
             )}
             onClickOutside={() => setIsInputFocus(false)}

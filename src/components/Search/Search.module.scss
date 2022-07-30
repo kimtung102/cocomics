@@ -39,11 +39,11 @@
     max-height: min((100vh - 96px) - 60px, 734px);
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     padding: 10px 0px;
+    overflow: scroll;
 }
 
 .list-item {
     display: flex;
-    align-items: center;
     padding: 6px 12px;
 
     &:hover {
@@ -53,7 +53,7 @@
 }
 
 .search-avatar {
-    width: 50px;
+    width: 30px;
     margin-right: 5px;
 }
 
