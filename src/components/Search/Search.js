@@ -1,7 +1,6 @@
 import className from 'classnames/bind';
 import styles from './Search.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import avatar from '~/assets/images/comic-image.svg';
 
 import { get } from '~/utils/httpRequest';
 import searchIcon from '~/assets/images/search-icon.svg';

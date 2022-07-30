@@ -8,6 +8,7 @@ import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import Search from '~/components/Search/Search';
 import { useRecoilState } from 'recoil';
+import { userAuth } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
 
@@ -15,7 +16,7 @@ const cx = className.bind(styles);
 
 function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
-    const currentUser = false;
+    const [currentUser, setCurrentUser] = useRecoilState(userAuth);
 
     const handleLoginShow = () => {
         setPopup(1);

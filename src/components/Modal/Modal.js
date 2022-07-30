@@ -4,14 +4,16 @@ import arrow from '~/assets/images/arrow-left.svg';
 import Button from '../Button/Button';
 import backIcon from '~/assets/images/back-icon.svg';
 
-import { post, get } from '~/utils/httpRequest';
+import { post } from '~/utils/httpRequest';
 import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { useRecoilState } from 'recoil';
+import { userAuth } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import InputField from './InputField';
+import { useNavigate } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
@@ -31,24 +33,57 @@ const schemaSignup = yup.object().shape({
 
 const schemaForgot = yup.object().shape({
     username: yup.string().required('Vui lòng nhập tên tài khoản!'),
+    newpass: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 kí tự!').required('Vui lòng nhập mật khẩu!'),
 });
 
 function Modal({ popup }) {
     const [p, setP] = useRecoilState(popupState);
+    const [currentUser, setCurrentUser] = useRecoilState(userAuth);
 
-    const handleRegister = async (value) => {
+    let navigate = useNavigate();
+
+    const handleLogin = async (value) => {
         console.log(value);
+        const res = await post('/sign-in', JSON.stringify(value));
+        console.log(res);
+        if (res.id > 0) {
+            alert('Đăng nhập thành công!');
+            setCurrentUser(true);
+            navigate('/');
+        } else {
+            alert('Tài khoản hoặc mật khẩu không chính xác!');
+        }
+    };
+
+    const handleRegister = async ({ username, password }) => {
         const data = {
-            accountName: value.username,
-            password: value.password,
-            nickName: 'tungtest',
+            username,
+            password,
         };
         console.log(data);
-        try {
-            const res = await post('/register', JSON.stringify(data));
-            console.log(res);
-        } catch (error) {
-            console.log(error);
+        const res = await post('/register', JSON.stringify(data));
+        console.log(res);
+        if (res.userId > 0) {
+            alert('Đăng ký thành công, đăng nhập ngay!');
+            setP(1);
+        } else {
+            alert('Tên tài khoản đã tồn tại!');
+        }
+    };
+
+    const handleForgot = async (value) => {
+        const data = {
+            username: value.username,
+            password: 'abc',
+            newPass: value.newpass,
+        };
+        const res = await post('/change-password', JSON.stringify(data));
+        console.log(res);
+        if (res.id > 0) {
+            alert('Đặt mật khẩu mới thành công, đăng nhập ngay!');
+            setP(1);
+        } else {
+            alert('Tên tài khoản không tồn tại!');
         }
     };
 
@@ -141,7 +176,7 @@ function Modal({ popup }) {
                             {popup === 1 && (
                                 <Formik
                                     validationSchema={schemaLogin}
-                                    onSubmit={(val) => handleRegister(val)}
+                                    onSubmit={(val) => handleLogin(val)}
                                     initialValues={{
                                         username: '',
                                         password: '',
@@ -184,9 +219,10 @@ function Modal({ popup }) {
                             {popup === 3 && (
                                 <Formik
                                     validationSchema={schemaForgot}
-                                    onSubmit={(val) => console.log(val)}
+                                    onSubmit={(val) => handleForgot(val)}
                                     initialValues={{
                                         username: '',
+                                        newpass: '',
                                     }}
                                 >
                                     {({ handleSubmit, touched, errors }) => (
@@ -199,6 +235,14 @@ function Modal({ popup }) {
                                                     name="username"
                                                     isInvalid={touched.username && !!errors.username}
                                                     message={errors.username}
+                                                />
+                                                <InputField
+                                                    label="Mật khẩu mới"
+                                                    type="password"
+                                                    id="newpass"
+                                                    name="newpass"
+                                                    isInvalid={touched.newpass && !!errors.newpass}
+                                                    message={errors.newpass}
                                                 />
                                                 <div className={cx('btn-signup')}>
                                                     <Button large type="submit">

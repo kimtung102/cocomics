@@ -10,10 +10,6 @@ function SearchPopover({ data }) {
             <div className={cx('search-info')}>
                 <p className={cx('info-title')}>{data.name}</p>
                 <p className={cx('info-category')}>{data.category}</p>
-                {/* <span className={cx('info-summary')}>
-                    The alien DNA is the best thing that has ever happened to Ye Shuang because the genetic optimization
-                    it offers has made her more beautiful, more formidable, and more brilliant.
-                </span> */}
             </div>
         </div>
     );

@@ -14,7 +14,7 @@ export const get = async (path, options) => {
 
 export const post = async (path, options) => {
     const response = await instance.post(path, options);
-    return response;
+    return response.data;
 };
 
 export default instance;
