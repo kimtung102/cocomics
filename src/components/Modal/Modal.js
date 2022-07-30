@@ -48,6 +48,7 @@ function Modal({ popup }) {
         console.log(res);
         if (res.id > 0) {
             alert('Đăng nhập thành công!');
+            setP(0);
             setCurrentUser(true);
             navigate('/');
         } else {
@@ -113,7 +114,7 @@ function Modal({ popup }) {
                         )}
                         {popup === 3 && (
                             <div className={cx('popup-title')}>
-                                <span className={cx('back')} onClick={() => setP(2)}>
+                                <span className={cx('back')} onClick={() => setP(1)}>
                                     <img src={arrow} alt="arrow" width={'20px'}></img>
                                 </span>
                                 <p className={cx('title')}>Quên mật khẩu</p>

@@ -85,7 +85,9 @@ function Header() {
                                     <a href="/">Yêu thích</a>
                                     <a href="/">Lịch sử đọc</a>
                                     <a href="/">Cài đặt</a>
-                                    <a href="/">Đăng xuất</a>
+                                    <a href="/" onClick={() => setCurrentUser(false)}>
+                                        Đăng xuất
+                                    </a>
                                 </p>
                             </div>
                         )}
