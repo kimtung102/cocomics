@@ -13,6 +13,7 @@ import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
 import { get } from '~/utils/httpRequest';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
@@ -67,10 +68,10 @@ function Header() {
                             <span className={cx('title')}>Thể loại</span>
                         </div>
                     </Tippy>
-                    <div className={cx('header-item')}>
+                    <Link to="/ranking" className={cx('header-item')}>
                         <img src={bxhIcon} alt="bxhIcon" className={cx('icon')} />
                         <span className={cx('title')}>BXH</span>
-                    </div>
+                    </Link>
                     <Search />
                 </div>
                 {currentUser ? (
