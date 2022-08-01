@@ -21,15 +21,12 @@ function MySlider() {
         <div className={cx('wrapper')}>
             <Slider {...settings}>
                 <div className={cx('slider')}>
-                    <span className={cx('slider-content')}></span>
                     <img src={image} alt="mainimage" />
                 </div>
                 <div className={cx('slider')}>
-                    <span className={cx('slider-content')}></span>
                     <img src={image} alt="mainimage" />
                 </div>
                 <div className={cx('slider')}>
-                    <span className={cx('slider-content')}></span>
                     <img src={image} alt="mainimage" />
                 </div>
             </Slider>

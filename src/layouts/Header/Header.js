@@ -11,12 +11,24 @@ import { useRecoilState } from 'recoil';
 import { userAuth } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
+import { useEffect, useState } from 'react';
+import { get } from '~/utils/httpRequest';
 
 const cx = className.bind(styles);
 
 function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
     const [currentUser, setCurrentUser] = useRecoilState(userAuth);
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        const getCategory = async () => {
+            const res = await get('/category-list');
+            setCategory(res);
+        };
+
+        getCategory();
+    }, []);
 
     const handleLoginShow = () => {
         setPopup(1);
@@ -38,21 +50,15 @@ function Header() {
                         placement="bottom-start"
                         render={(attrs) => (
                             <div className={cx('category-popover')} tabIndex="-1" {...attrs}>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
+                                {category.map((item) => (
+                                    <a
+                                        href={`/stories/comic-${item.name}`}
+                                        className={cx('category-item')}
+                                        key={item.id}
+                                    >
+                                        {item.name}
+                                    </a>
+                                ))}
                             </div>
                         )}
                     >
