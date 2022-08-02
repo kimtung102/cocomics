@@ -11,12 +11,25 @@ import { useRecoilState } from 'recoil';
 import { userAuth } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
+import { useEffect, useState } from 'react';
+import { get } from '~/utils/httpRequest';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
 function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
     const [currentUser, setCurrentUser] = useRecoilState(userAuth);
+    const [category, setCategory] = useState([]);
+
+    useEffect(() => {
+        const getCategory = async () => {
+            const res = await get('/category-list');
+            setCategory(res);
+        };
+
+        getCategory();
+    }, []);
 
     const handleLoginShow = () => {
         setPopup(1);
@@ -38,21 +51,15 @@ function Header() {
                         placement="bottom-start"
                         render={(attrs) => (
                             <div className={cx('category-popover')} tabIndex="-1" {...attrs}>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
-                                <p className={cx('category-column')}>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                    <a href="/">Romance</a>
-                                </p>
+                                {category.map((item) => (
+                                    <a
+                                        href={`/stories/comic-${item.name}`}
+                                        className={cx('category-item')}
+                                        key={item.id}
+                                    >
+                                        {item.name}
+                                    </a>
+                                ))}
                             </div>
                         )}
                     >
@@ -61,10 +68,10 @@ function Header() {
                             <span className={cx('title')}>Thể loại</span>
                         </div>
                     </Tippy>
-                    <div className={cx('header-item')}>
+                    <Link to="/ranking" className={cx('header-item')}>
                         <img src={bxhIcon} alt="bxhIcon" className={cx('icon')} />
                         <span className={cx('title')}>BXH</span>
-                    </div>
+                    </Link>
                     <Search />
                 </div>
                 {currentUser ? (

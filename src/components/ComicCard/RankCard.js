@@ -5,12 +5,13 @@ import image from '~/assets/images/comic-image-2.svg';
 
 const cx = className.bind(styles);
 
-function SmallCard2({ data }) {
+function RankCard({ data, rank }) {
     return (
-        <div className={cx('wrapper-small-2')}>
+        <div className={cx('wrapper-rank-card')}>
             <a href="/" className={cx('card-image')}>
                 <img src={data?.image || image} alt="thumnail" />
             </a>
+            <span className={cx('card-stt')}>{`0${rank}` || '00'}</span>
             <div className={cx('content')}>
                 <a href="/" className={cx('title')}>
                     {data?.name || 'Gia sư của công tước'}
@@ -23,4 +24,4 @@ function SmallCard2({ data }) {
     );
 }
 
-export default SmallCard2;
+export default RankCard;

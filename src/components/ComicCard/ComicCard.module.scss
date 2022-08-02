@@ -1,5 +1,5 @@
 .wrapper-small-1 {
-    min-width: 100px;
+    min-width: 106px;
     width: 106px;
     // + .wrapper-small-1 {
     //     margin-left: 18px;
@@ -12,8 +12,26 @@
     }
 
     .card-image {
-        display: block;
+        display: inline-block;
+        width: 101px;
+        height: 132px;
         margin-bottom: 4px;
+        overflow: hidden;
+        border-radius: 4px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease-out;
+            }
+            &:not(:hover) {
+                transition: transform 0.3s ease-out;
+            }
+        }
     }
 
     .title {
@@ -34,8 +52,9 @@
 .wrapper-small-2 {
     display: flex;
     font-size: 1.2rem;
-    min-width: 100px;
-    width: 156px;
+    min-width: 156px;
+    width: 162px;
+    height: 76px;
 
     a {
         &:hover {
@@ -44,8 +63,26 @@
     }
 
     .card-image {
-        display: block;
+        display: inline-block;
+        width: 54px;
+        height: 68px;
         margin-right: 4px;
+        border-radius: 2px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+            &:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease-out;
+            }
+            &:not(:hover) {
+                transition: transform 0.3s ease-out;
+            }
+        }
     }
 
     .content {
@@ -65,117 +102,58 @@
     }
 }
 
-.wrapper-large-1 {
-    width: 356px;
-    height: 420px;
-    background-color: #ececec;
-    border-radius: 6px;
+.wrapper-rank-card {
+    display: flex;
+    font-size: 1.4rem;
+    min-width: 150px;
+    width: 200px;
+
     a {
         &:hover {
             text-decoration: underline;
         }
     }
 
-    .image {
-        height: 200px;
-        background-color: rgb(44, 226, 226);
-        border-radius: 6px;
+    .card-image {
+        display: inline-block;
+        min-width: 50px;
+        height: 66.66px;
+        overflow: hidden;
+        border-radius: 3px;
+
         img {
             width: 100%;
-            height: 100%; // de tam sau xoa
-        }
-    }
+            height: 100%;
+            object-fit: fill;
 
-    .content {
-        .header {
-            font-weight: 600;
-            text-align: center;
-            margin-top: 10px;
-            margin-bottom: 6px;
-            .title {
-                display: block;
-                font-size: 2rem;
-            }
-
-            .category {
-                font-size: 1.4rem;
-            }
-        }
-
-        .summary {
-            font-size: 1.5rem;
-            font-weight: 500;
-            overflow: hidden;
-            padding: 0 1.2rem;
-            text-align: justify;
-            display: -webkit-box;
-            -webkit-line-clamp: 6; //line display
-            -webkit-box-orient: vertical;
-        }
-    }
-}
-
-.wrapper-large-2 {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 290px;
-    background-color: #f6f7fc;
-    border-radius: 6px;
-    padding: 16px;
-
-    .list-image {
-        display: flex;
-        gap: 6px;
-    }
-
-    .content-wrapper {
-        display: flex;
-        color: var(--text-color);
-        margin-top: 16px;
-
-        .main-image {
             &:hover {
-                cursor: pointer;
+                transform: scale(1.1);
+                transition: transform 0.3s ease-out;
+            }
+            &:not(:hover) {
+                transition: transform 0.3s ease-out;
             }
         }
+    }
 
-        .card-body {
-            margin-left: 12px;
+    .card-stt {
+        font-weight: 700;
+        margin: 0 6px;
+    }
+    .content {
+        margin-top: 2px;
+        .title {
+            display: block;
+            font-weight: 700;
+            color: #202223;
+            line-height: 1.4rem;
+            margin-bottom: 2px;
+        }
 
-            a {
-                display: block;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-
-            .content-title {
-                font-weight: 700;
-                font-size: 1.8rem;
-            }
-
-            .content-category {
-                color: #797979;
-                font-size: 1.4rem;
-                font-weight: 500;
-                margin-bottom: 5px;
-            }
-
-            .content-summary {
-                display: inline-block;
-                color: #797979;
-                font-size: 1.4rem;
-                font-weight: 500;
-                margin-bottom: 15px;
-                line-height: 20px;
-                overflow: hidden;
-                text-align: justify;
-                display: -webkit-box;
-                -webkit-line-clamp: 3; //line display
-                -webkit-box-orient: vertical;
-            }
+        .category {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #676767;
         }
     }
 }
