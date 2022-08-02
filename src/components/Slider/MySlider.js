@@ -31,6 +31,12 @@ function MySlider() {
                 <div className={cx('slider')}>
                     <img src={image} alt="mainimage" />
                 </div>
+                <div className={cx('slider')}>
+                    <img src={image} alt="mainimage" />
+                </div>
+                <div className={cx('slider')}>
+                    <img src={image} alt="mainimage" />
+                </div>
             </Slider>
         </div>
     );
