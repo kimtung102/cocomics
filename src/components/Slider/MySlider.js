@@ -11,9 +11,11 @@ const cx = className.bind(styles);
 const settings = {
     dots: true,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    cssEase: 'linear',
 };
 
 function MySlider() {
