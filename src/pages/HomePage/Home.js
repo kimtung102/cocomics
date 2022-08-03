@@ -22,6 +22,10 @@ function Home() {
     const [rankMonth, setRankMonth] = useState([]);
 
     useEffect(() => {
+        window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+    }, []);
+
+    useEffect(() => {
         const getRankDay = async () => {
             try {
                 const res = await get('/comic-rank-view-no', {

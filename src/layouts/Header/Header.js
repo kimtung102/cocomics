@@ -13,7 +13,7 @@ import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
 import { get } from '~/utils/httpRequest';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
@@ -21,6 +21,8 @@ function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
     const [currentUser, setCurrentUser] = useRecoilState(userAuth);
     const [category, setCategory] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getCategory = async () => {
@@ -39,13 +41,19 @@ function Header() {
         setPopup(2);
     };
 
+    const handleSignOut = (e) => {
+        e.preventDefault();
+        setCurrentUser(false);
+        navigate('/');
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('left-block')}>
-                    <div className={cx('logo')}>
+                    <Link to="/" className={cx('logo')}>
                         <img src={logo} alt="logo" />
-                    </div>
+                    </Link>
                     <Tippy
                         interactive
                         placement="bottom-start"
@@ -88,11 +96,11 @@ function Header() {
                                     </div>
                                 </div>
                                 <p className={cx('option')}>
-                                    <a href="/">Thông tin cá nhân</a>
-                                    <a href="/">Yêu thích</a>
-                                    <a href="/">Lịch sử đọc</a>
-                                    <a href="/">Cài đặt</a>
-                                    <a href="/" onClick={() => setCurrentUser(false)}>
+                                    <Link to="/user">Thông tin cá nhân</Link>
+                                    <Link to="/favourite">Yêu thích</Link>
+                                    <Link to="/history">Lịch sử đọc</Link>
+                                    <Link to="/setup">Cài đặt</Link>
+                                    <a href="/" onClick={(e) => handleSignOut(e)}>
                                         Đăng xuất
                                     </a>
                                 </p>

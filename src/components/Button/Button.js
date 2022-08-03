@@ -16,6 +16,7 @@ function Button({
     rounded = false,
     keyword = false,
     small = false,
+    grey,
     large,
     children,
     className,
@@ -57,6 +58,7 @@ function Button({
         rounded,
         keyword,
         small,
+        grey,
     });
 
     return (

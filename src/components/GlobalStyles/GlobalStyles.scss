@@ -26,9 +26,14 @@ html {
 
 button,
 input,
+textarea,
 [tabindex] {
     outline: none;
     border: none;
+}
+
+input[type='radio']:checked {
+    accent-color: var(--primary);
 }
 
 a {
