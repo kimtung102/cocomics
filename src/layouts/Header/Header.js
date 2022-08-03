@@ -19,7 +19,7 @@ const cx = className.bind(styles);
 
 function Header() {
     const [popup, setPopup] = useRecoilState(popupState);
-    const [currentUser, setCurrentUser] = useRecoilState(userAuth);
+    const [isLogin, setIsLogin] = useRecoilState(userAuth);
     const [category, setCategory] = useState([]);
 
     const navigate = useNavigate();
@@ -43,7 +43,8 @@ function Header() {
 
     const handleSignOut = (e) => {
         e.preventDefault();
-        setCurrentUser(false);
+        window.localStorage.clear();
+        setIsLogin(false);
         navigate('/');
     };
 
@@ -82,7 +83,7 @@ function Header() {
                     </Link>
                     <Search />
                 </div>
-                {currentUser ? (
+                {isLogin ? (
                     <Tippy
                         interactive
                         placement="bottom-end"

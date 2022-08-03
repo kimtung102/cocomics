@@ -4,7 +4,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import image from '~/assets/images/slider.svg';
+// import image from '~/assets/images/slider.svg';
+import image from '~/assets/images/big-banner.svg';
 
 const cx = className.bind(styles);
 
