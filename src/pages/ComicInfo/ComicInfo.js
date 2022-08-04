@@ -100,6 +100,8 @@ function ComicInfo() {
                         </div>
                         <div className={cx('list-comment')}>
                             <Comment />
+                            <Comment />
+                            <Comment />
                         </div>
                     </div>
                 </div>
