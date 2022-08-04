@@ -10,6 +10,7 @@ import Comment from '~/components/Comment/Comment';
 import Header from '~/layouts/Header/Header';
 import Footer from '~/layouts/Footer/Footer';
 import { useEffect, useState } from 'react';
+import Chapter from '~/components/Chapter/Chapter';
 
 const cx = className.bind(styles);
 
@@ -119,7 +120,23 @@ function ComicInfo() {
                             </div>
                         </>
                     ) : (
-                        <h1>hello</h1>
+                        <>
+                            <p className={cx('chapter')}>Chapter</p>
+                            <div className={cx('list-chapter')}>
+                                <div className={cx('chapter-row')}>
+                                    <Chapter stt="1" />
+                                    <Chapter stt="3" />
+                                </div>
+                                <div className={cx('chapter-row')}>
+                                    <Chapter odd stt="2" />
+                                    <Chapter odd stt="4" />
+                                </div>
+                                <div className={cx('chapter-row')}>
+                                    <Chapter stt="5" />
+                                    <Chapter stt="6" />
+                                </div>
+                            </div>
+                        </>
                     )}
                 </div>
             </div>

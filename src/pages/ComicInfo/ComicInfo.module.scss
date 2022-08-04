@@ -253,3 +253,15 @@
         }
     }
 }
+
+.chapter {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.chapter-row {
+    display: flex;
+    justify-content: space-between;
+}
