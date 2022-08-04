@@ -38,7 +38,7 @@ const schemaForgot = yup.object().shape({
 
 function Modal({ popup }) {
     const [p, setP] = useRecoilState(popupState);
-    const [currentUser, setCurrentUser] = useRecoilState(userAuth);
+    const [isLogin, setIsLogin] = useRecoilState(userAuth);
 
     let navigate = useNavigate();
 
@@ -49,7 +49,9 @@ function Modal({ popup }) {
         if (res.id > 0) {
             alert('Đăng nhập thành công!');
             setP(0);
-            setCurrentUser(true);
+            window.localStorage.setItem('isLogin', true);
+            const login = window.localStorage.getItem('isLogin');
+            setIsLogin(login);
             navigate('/');
         } else {
             alert('Tài khoản hoặc mật khẩu không chính xác!');

@@ -13,17 +13,20 @@ import Banner from '~/components/ComicCard/Banner';
 import { useEffect, useState } from 'react';
 import { get } from '~/utils/httpRequest';
 import RankCard from '~/components/ComicCard/RankCard';
+import { useRecoilValue } from 'recoil';
+import { userAuth } from '~/states/userState';
 
 const cx = className.bind(styles);
 
 function Home() {
+    const isLogin = useRecoilValue(userAuth);
     const [rankDay, setRankDay] = useState([]);
     const [rankWeek, setRankWeek] = useState([]);
     const [rankMonth, setRankMonth] = useState([]);
 
     useEffect(() => {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-    }, []);
+    }, [isLogin]);
 
     useEffect(() => {
         const getRankDay = async () => {
