@@ -102,7 +102,7 @@
 .inner-sign {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 10px;
     .sign-text {
         padding: 8px 2px;
         line-height: 28px;
@@ -134,12 +134,24 @@
 
     .btn-signup {
         margin-top: 24px;
-
-        .btn-forgot {
-            text-align: center;
-            margin-top: 8px;
-        }
     }
+}
+
+.wrapper-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-sign-in {
+    display: flex;
+    text-align: center;
+    margin-top: 38px;
+}
+
+.margin20 {
+    display: flex;
+    margin-top: 20px;
+    gap: 3px;
 }
 
 .form-item {

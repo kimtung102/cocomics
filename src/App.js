@@ -11,8 +11,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/user" element={<UserPage />} />
-                    <Route path="/comic" element={<ComicInfo />} />
-                    <Route path="/reading" element={<ReadingPage />} />
+                    <Route path="/comic/:bookName/:bookId" element={<ComicInfo />} />
+                    <Route path="/comic/:bookName/:bookId/:chapter" element={<ReadingPage />} />
+                    <Route path="/category/:name" element={<h1>Trang Thể loại</h1>} />
+                    <Route path="*" element={<h1>Page not found</h1>} />
                 </Routes>
             </div>
         </Router>

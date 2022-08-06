@@ -2,23 +2,24 @@ import className from 'classnames/bind';
 import styles from './ComicCard.module.scss';
 
 import image from '~/assets/images/comic-image-2.svg';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
 function RankCard({ data, rank }) {
     return (
         <div className={cx('wrapper-rank-card')}>
-            <a href="/" className={cx('card-image')}>
+            <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('card-image')}>
                 <img src={data?.image || image} alt="thumnail" />
-            </a>
+            </Link>
             <span className={cx('card-stt')}>{`0${rank}` || '00'}</span>
             <div className={cx('content')}>
-                <a href="/" className={cx('title')}>
+                <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('title')}>
                     {data?.name || 'Gia sư của công tước'}
-                </a>
-                <a href="/" className={cx('category')}>
+                </Link>
+                <Link to={`/category/${data?.category}`} className={cx('category')}>
                     {data?.category || 'Manhwa'}
-                </a>
+                </Link>
             </div>
         </div>
     );

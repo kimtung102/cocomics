@@ -61,13 +61,9 @@ function Header() {
                         render={(attrs) => (
                             <div className={cx('category-popover')} tabIndex="-1" {...attrs}>
                                 {category.map((item) => (
-                                    <a
-                                        href={`/stories/comic-${item.name}`}
-                                        className={cx('category-item')}
-                                        key={item.id}
-                                    >
+                                    <Link to={`/category/${item.name}`} className={cx('category-item')} key={item.id}>
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         )}

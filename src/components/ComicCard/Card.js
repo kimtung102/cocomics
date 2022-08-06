@@ -5,23 +5,27 @@ import img1 from '~/assets/images/test-1.jpg';
 import img2 from '~/assets/images/test-4.jpg';
 import img3 from '~/assets/images/test-3.jpg';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
 const listComic = [
     {
+        id: 1,
         bg: img1,
         title: 'Hoàng tử người sói hung tợn',
         category: 'Fantasy - KimTung',
         summary: `Đây là câu chuyện về một thanh niên đạt được sức mạnh đỉnh cao trong cả ba con đường tu luyện: linh hồn, năng lượng và thể xác, do một sự kiện có một không hai đã cho anh tài năng để tu luyện chúng khi anh hai mươi tuổi. Tất cả những điều này xảy ra trong một vũ trụ do Chúa cai trị. Nhưng sau sự kiện độc đáo đó, anh ấy đã du hành đến một vũ trụ khác`,
     },
     {
+        id: 2,
         bg: img2,
         title: 'Tái sinh với một Glitch',
         category: 'Action - HaVu',
         summary: `Trò chơi này có hai sự lựa chọn: trở thành một anh hùng tái sinh ở thế giới khác hoặc nhận nhiệm vụ như một vị thần hướng dẫn những người như vậy. Một người đàn ông chọn cái thứ hai và trở thành Raymund, vị thần của hy vọng. Anh được giao nhiệm vụ cử các anh hùng đến cầu nguyện cho mọi người trong thế giới phàm trần. Sau khi các anh hùng của anh ấy hoàn thành các nhiệm vụ khác nhau`,
     },
     {
+        id: 3,
         bg: img3,
         title: 'Trò chơi mô phỏng luân hồi',
         category: 'Adventure - TranHuong',
@@ -81,12 +85,12 @@ function Card() {
             </div>
             <div className={cx('content')}>
                 <div className={cx('header')}>
-                    <a href="/" className={cx('title')}>
+                    <Link to={`/comic/${content.title}/${content.id}`} className={cx('title')}>
                         {content.title}
-                    </a>
-                    <a href="/" className={cx('category')}>
+                    </Link>
+                    <Link to={`/category/${content?.category}`} className={cx('category')}>
                         {content.category}
-                    </a>
+                    </Link>
                 </div>
                 <span className={cx('summary')}>{content.summary}</span>
             </div>

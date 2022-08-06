@@ -10,13 +10,11 @@
     color: var(--text-color);
     border-top: 1px solid #999ea4;
     border-bottom: 1px solid #999ea4;
-    background-color: #f6f6f7;
-}
-
-.odd {
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
     background-color: var(--white);
+
+    &:hover {
+        background-color: #f6f6f7;
+    }
 }
 
 .number {
