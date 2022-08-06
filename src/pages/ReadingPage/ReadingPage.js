@@ -9,6 +9,7 @@ import { get } from '~/utils/httpRequest';
 import { useEffect, useState } from 'react';
 import Button from '~/components/Button/Button';
 import { Link } from 'react-router-dom';
+import Header from '~/layouts/Header/Header';
 
 const cx = className.bind(styles);
 
@@ -33,7 +34,7 @@ function ReadingPage({ data }) {
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         const handleScroll = () => {
-            if (window.scrollY >= 115) {
+            if (window.scrollY >= 205) {
                 setVisible(true);
             } else {
                 setVisible(false);
@@ -47,6 +48,7 @@ function ReadingPage({ data }) {
 
     return (
         <>
+            <Header relative />
             {visible && (
                 <div className={cx('header')}>
                     <div className={cx('header-left')}>
