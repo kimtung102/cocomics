@@ -8,10 +8,11 @@ import logo from '~/assets/images/logo.svg';
 import { get } from '~/utils/httpRequest';
 import { useEffect, useState } from 'react';
 import Button from '~/components/Button/Button';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function ReadingPage() {
+function ReadingPage({ data }) {
     const [chapter, setChapter] = useState([]);
     const [visible, setVisible] = useState(false);
 
@@ -49,12 +50,12 @@ function ReadingPage() {
             {visible && (
                 <div className={cx('header')}>
                     <div className={cx('header-left')}>
-                        <a href="/">
+                        <Link to="/">
                             <img src={logo} alt="" />
-                        </a>
-                        <a href="/" className={cx('comic-name')}>
+                        </Link>
+                        <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('comic-name')}>
                             Chiến Thần Cuồng Phi
-                        </a>
+                        </Link>
                     </div>
                     <div className={cx('dropdown-group')}>
                         <Button roundedBlack leftIcon={<img src={back} alt="" />}>

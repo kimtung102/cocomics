@@ -44,10 +44,13 @@
         }
 
         .card-body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
             margin-left: 12px;
 
             a {
-                display: block;
+                display: inline-block;
 
                 &:hover {
                     text-decoration: underline;

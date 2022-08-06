@@ -14,7 +14,7 @@ import Chapter from '~/components/Chapter/Chapter';
 
 const cx = className.bind(styles);
 
-function ComicInfo() {
+function ComicInfo({ data }) {
     const [index, setIndex] = useState(1);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function ComicInfo() {
                                 cho Devota để kiếp này Devota được sống hạnh phúc. Nhưng mà chuyện gì đây
                             </span>
                             <div className={cx('btn')}>
-                                <Button primary small>
+                                <Button primary small to={`/comic/${data?.name}/${data?.bookId}/chapter-1`}>
                                     ĐỌC NGAY
                                 </Button>
                                 <img src={heartSolid} alt="" className={cx('heart')} />
@@ -124,16 +124,16 @@ function ComicInfo() {
                             <p className={cx('chapter')}>Chapter</p>
                             <div className={cx('list-chapter')}>
                                 <div className={cx('chapter-row')}>
-                                    <Chapter stt="1" />
-                                    <Chapter stt="3" />
+                                    <Chapter />
+                                    <Chapter />
                                 </div>
                                 <div className={cx('chapter-row')}>
-                                    <Chapter odd stt="2" />
-                                    <Chapter odd stt="4" />
+                                    <Chapter />
+                                    <Chapter />
                                 </div>
                                 <div className={cx('chapter-row')}>
-                                    <Chapter stt="5" />
-                                    <Chapter stt="6" />
+                                    <Chapter />
+                                    <Chapter />
                                 </div>
                             </div>
                         </>

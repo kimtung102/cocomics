@@ -12,10 +12,11 @@ import image7 from '~/assets/images/large-card-2/7.jpg';
 import image8 from '~/assets/images/large-card-2/8.jpg';
 import image9 from '~/assets/images/large-card-2/9.jpg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function LargeCard2() {
+function LargeCard2({ data }) {
     const [index, setIndex] = useState(1);
 
     return (
@@ -50,24 +51,26 @@ function LargeCard2() {
                 </span>
             </div>
             <div className={cx('content-wrapper')}>
-                <span className={cx('main-image')}>
+                <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('main-image')}>
                     <img src={image1} alt="#" />
-                </span>
+                </Link>
                 <div className={cx('card-body')}>
-                    <a href="/" className={cx('content-title')}>
+                    <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('content-title')}>
                         Kinh nghiệm cảnh nóng
-                    </a>
-                    <a href="/" className={cx('content-category')}>
+                    </Link>
+                    <Link to={`/category/${data?.category}`} className={cx('content-category')}>
                         Boy Love
-                    </a>
+                    </Link>
                     <span className={cx('content-summary')}>
                         Tae Gyum sau khi phát hiện mình là một Alpha trội gặp tai họa khi vô tình khiến một Omega phát
                         tình, cậu trở nên né tránh là một Alpha trội gặp tai họa khi vô tình khiến một Omega phát tình,
                         cậu trở nên né tránh
                     </span>
-                    <Button primary small>
-                        Đọc ngay
-                    </Button>
+                    <span>
+                        <Button primary small to={`/comic/${data?.name}/${data?.bookId}/chapter-1`}>
+                            Đọc ngay
+                        </Button>
+                    </span>
                 </div>
             </div>
         </div>
