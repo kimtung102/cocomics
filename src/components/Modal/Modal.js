@@ -31,9 +31,10 @@ const schemaSignup = yup.object().shape({
         .required('Vui lòng xác nhận mật khẩu của bạn!'),
 });
 
-const schemaForgot = yup.object().shape({
+const schemaChangePass = yup.object().shape({
     username: yup.string().required('Vui lòng nhập tên tài khoản!'),
     password: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 kí tự!').required('Vui lòng nhập mật khẩu!'),
+    newPass: yup.string().min(6, 'Mật khẩu phải chứa ít nhất 6 kí tự!').required('Vui lòng nhập mật khẩu!'),
 });
 
 function Modal({ popup }) {
@@ -72,21 +73,15 @@ function Modal({ popup }) {
         }
     };
 
-    const handleForgot = async (value) => {
+    const handleChangePass = async (value) => {
         console.log(value);
-        const data = {
-            username: value.username,
-            password: 'abcbas',
-            newPass: value.password,
-        };
-        console.log(data);
-        const res = await put('/change-password', JSON.stringify(data));
+        const res = await put('/change-password', JSON.stringify(value));
         console.log(res);
         if (res.id > 0) {
             alert('Đặt mật khẩu mới thành công, đăng nhập ngay!');
-            setP(1);
+            setP(0);
         } else {
-            alert('Tên tài khoản không tồn tại!');
+            alert('Sai thông tin xác thực!');
         }
     };
 
@@ -114,14 +109,7 @@ function Modal({ popup }) {
                                 <p className={cx('title')}>Đăng ký</p>
                             </div>
                         )}
-                        {popup === 3 && (
-                            <div className={cx('popup-title')}>
-                                <span className={cx('back')} onClick={() => setP(1)}>
-                                    <img src={arrow} alt="arrow" width={'20px'}></img>
-                                </span>
-                                <p className={cx('title')}>Quên mật khẩu</p>
-                            </div>
-                        )}
+                        {popup === 3 && <p className={cx('title-changePass')}>Đổi mật khẩu</p>}
                         <span className={cx('cancel')} onClick={() => setP(0)}>
                             <img src={backIcon} alt="back" width={'17px'}></img>
                         </span>
@@ -216,11 +204,12 @@ function Modal({ popup }) {
                             )}
                             {popup === 3 && (
                                 <Formik
-                                    validationSchema={schemaForgot}
-                                    onSubmit={(val) => handleForgot(val)}
+                                    validationSchema={schemaChangePass}
+                                    onSubmit={(val) => handleChangePass(val)}
                                     initialValues={{
                                         username: '',
                                         password: '',
+                                        newPass: '',
                                     }}
                                 >
                                     {({ handleSubmit, touched, errors }) => (
@@ -235,12 +224,20 @@ function Modal({ popup }) {
                                                     message={errors.username}
                                                 />
                                                 <InputField
-                                                    label="Mật khẩu mới"
+                                                    label="Mật khẩu hiện tại"
                                                     type="password"
                                                     id="password"
                                                     name="password"
                                                     isInvalid={touched.password && !!errors.password}
                                                     message={errors.password}
+                                                />
+                                                <InputField
+                                                    label="Mật khẩu mới"
+                                                    type="password"
+                                                    id="newPass"
+                                                    name="newPass"
+                                                    isInvalid={touched.newPass && !!errors.newPass}
+                                                    message={errors.newPass}
                                                 />
                                                 <div className={cx('btn-signup')}>
                                                     <Button large type="submit">
@@ -257,7 +254,7 @@ function Modal({ popup }) {
                             {popup === 1 && (
                                 <>
                                     <div className={cx('wrapper-btn')}>
-                                        <Button text onClick={() => setP(3)}>
+                                        <Button text onClick={() => alert('Tính năng đang được phát triển!')}>
                                             Quên mật khẩu?
                                         </Button>
                                         <div className={cx('btn-sign-in')}>
