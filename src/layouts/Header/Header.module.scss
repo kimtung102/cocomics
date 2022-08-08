@@ -10,6 +10,12 @@
     z-index: 1000;
 }
 
+.relative-wrapper {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
 .inner {
     display: flex;
     justify-content: space-between;

@@ -17,7 +17,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function Header() {
+function Header({ relative = false }) {
     const [popup, setPopup] = useRecoilState(popupState);
     const [isLogin, setIsLogin] = useRecoilState(userAuth);
     const [category, setCategory] = useState([]);
@@ -49,7 +49,7 @@ function Header() {
     };
 
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper', relative && 'relative-wrapper')}>
             <div className={cx('inner')}>
                 <div className={cx('left-block')}>
                     <Link to="/" className={cx('logo')}>
