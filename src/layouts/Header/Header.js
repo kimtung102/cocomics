@@ -41,6 +41,10 @@ function Header({ relative = false }) {
         setPopup(2);
     };
 
+    const handleChangePasswordShow = (e) => {
+        e.preventDefault();
+        setPopup(3);
+    };
     const handleSignOut = (e) => {
         e.preventDefault();
         window.localStorage.clear();
@@ -96,6 +100,9 @@ function Header({ relative = false }) {
                                     <Link to="/user">Thông tin cá nhân</Link>
                                     <Link to="/favourite">Yêu thích</Link>
                                     <Link to="/history">Lịch sử đọc</Link>
+                                    <a href="/" onClick={(e) => handleChangePasswordShow(e)}>
+                                        Đổi mật khẩu
+                                    </a>
                                     <Link to="/setup">Cài đặt</Link>
                                     <a href="/" onClick={(e) => handleSignOut(e)}>
                                         Đăng xuất
