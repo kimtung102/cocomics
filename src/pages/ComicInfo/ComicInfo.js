@@ -11,15 +11,48 @@ import Header from '~/layouts/Header/Header';
 import Footer from '~/layouts/Footer/Footer';
 import { useEffect, useState } from 'react';
 import Chapter from '~/components/Chapter/Chapter';
+import PageBar from '~/components/Pagination/PageBar';
+import { get } from '~/utils/httpRequest';
 
 const cx = className.bind(styles);
 
 function ComicInfo({ data }) {
     const [index, setIndex] = useState(1);
+    const [listChapter, setListChapter] = useState([]);
+    const [pagination, setPagination] = useState({
+        current: 1,
+        size: 3,
+        totalRow: 42,
+    });
+    const [newPage, setNewPage] = useState(1);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
+
+    useEffect(() => {
+        const getData = async () => {
+            const res = await get('/comic-chapter-list', {
+                params: {
+                    bookId: 30,
+                    size: 3,
+                    page: newPage,
+                },
+            });
+            const data = JSON.parse(res);
+            setPagination({
+                current: newPage,
+                size: 3,
+                totalRow: data.total,
+            });
+            setListChapter(data.chapters);
+        };
+        getData();
+    }, [newPage]);
+
+    const handlePageChange = (page) => {
+        setNewPage(page);
+    };
 
     return (
         <>
@@ -123,19 +156,11 @@ function ComicInfo({ data }) {
                         <>
                             <p className={cx('chapter')}>Chapter</p>
                             <div className={cx('list-chapter')}>
-                                <div className={cx('chapter-row')}>
-                                    <Chapter />
-                                    <Chapter />
-                                </div>
-                                <div className={cx('chapter-row')}>
-                                    <Chapter />
-                                    <Chapter />
-                                </div>
-                                <div className={cx('chapter-row')}>
-                                    <Chapter />
-                                    <Chapter />
-                                </div>
+                                {listChapter.map((chapter, index) => {
+                                    return <Chapter stt={index + 1} key={chapter.id} />;
+                                })}
                             </div>
+                            <PageBar onPageChange={handlePageChange} pagination={pagination} />
                         </>
                     )}
                 </div>
