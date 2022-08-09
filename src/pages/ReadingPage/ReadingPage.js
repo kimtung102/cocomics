@@ -91,6 +91,11 @@ function ReadingPage({ data }) {
                         <select className={cx('dropdown')}>
                             <option>Chapter 1: Linh hồn bất diệt</option>
                             <option>Chapter 2: Linh hồn bất diệt</option>
+                            <option>Chapter 3: Linh hồn bất diệt</option>
+                            <option>Chapter 4: Linh hồn bất diệt</option>
+                            <option>Chapter 5: Linh hồn bất diệt</option>
+                            <option>Chapter 6: Linh hồn bất diệt</option>
+                            <option>Chapter 7: Linh hồn bất diệt</option>
                         </select>
                         <Button primary rightIcon={<img src={ahead} alt="" />}>
                             Chap sau

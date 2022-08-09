@@ -11,16 +11,18 @@ import { useRecoilState } from 'recoil';
 import { userAuth } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { get } from '~/utils/httpRequest';
 import { Link, useNavigate } from 'react-router-dom';
+
+import { categoryState } from '~/states/categoryState';
 
 const cx = className.bind(styles);
 
 function Header({ relative = false }) {
     const [popup, setPopup] = useRecoilState(popupState);
     const [isLogin, setIsLogin] = useRecoilState(userAuth);
-    const [category, setCategory] = useState([]);
+    const [category, setCategory] = useRecoilState(categoryState);
 
     const navigate = useNavigate();
 

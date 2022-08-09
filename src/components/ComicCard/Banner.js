@@ -4,13 +4,13 @@ import styles from './Banner.module.scss';
 
 const cx = className.bind(styles);
 
-function Banner({ data }) {
+function Banner({ data, bgImage, name }) {
     return (
-        <div className={cx('wrapper')}>
+        <div className={cx('wrapper')} style={{ backgroundImage: `url(${bgImage})` }}>
             <div className={cx('banner-linear')}>
                 <div className={cx('banner-content')}>
                     <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('content-header')}>
-                        Vạn Cổ Tối Cường Tông
+                        {name}
                     </Link>
                     <span className={cx('content-summary')}>
                         Tae Gyum sau khi phát hiện mình là một Alpha trội gặp tai họa khi vô tình khiến một Omega phát

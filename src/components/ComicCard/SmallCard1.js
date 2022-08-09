@@ -13,10 +13,10 @@ function SmallCard1({ data }) {
                 <img src={data?.image || noImage} alt="thumnail" />
             </Link>
             <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('title')}>
-                Gia Sư Của Công Tước
+                {data?.name}
             </Link>
             <Link to={`/category/${data?.category}`} className={cx('category')}>
-                Đam mỹ
+                {data?.category}
             </Link>
         </div>
     );

@@ -21,7 +21,7 @@ function ComicInfo({ data }) {
     const [listChapter, setListChapter] = useState([]);
     const [pagination, setPagination] = useState({
         current: 1,
-        size: 3,
+        size: 4,
         totalRow: 42,
     });
     const [newPage, setNewPage] = useState(1);
@@ -35,14 +35,14 @@ function ComicInfo({ data }) {
             const res = await get('/comic-chapter-list', {
                 params: {
                     bookId: 30,
-                    size: 3,
+                    size: 4,
                     page: newPage,
                 },
             });
             const data = JSON.parse(res);
             setPagination({
                 current: newPage,
-                size: 3,
+                size: 4,
                 totalRow: data.total,
             });
             setListChapter(data.chapters);
