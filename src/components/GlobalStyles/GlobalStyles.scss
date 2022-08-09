@@ -60,6 +60,19 @@ body {
     .slick-dots {
         bottom: 40px;
     }
+
+    .page-link {
+        color: var(--black);
+        &:hover {
+            color: rgba(235, 29, 36, 0.7);
+        }
+    }
+
+    .active > .page-link,
+    .page-link.active {
+        background-color: var(--primary);
+        border-color: var(--primary);
+    }
 }
 
 //scroll bar
