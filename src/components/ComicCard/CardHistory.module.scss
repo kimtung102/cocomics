@@ -1,0 +1,54 @@
+.wrapper {
+    width: 90%;
+    position: relative;
+    display: flex;
+    padding: 5px 1px;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    .description {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 8px;
+        color: #8c9196;
+    }
+    .link-read {
+        position: absolute;
+        text-transform: uppercase;
+        right: 1px;
+        bottom: 1px;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        color: #2e72d2;
+    }
+}
+.star-rate {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    color: #918e8e;
+}
+.img {
+    width: 152px;
+    height: 213px;
+    border-radius: 2px;
+}
+.content {
+    margin-left: 10px;
+}
+.title {
+    width: 100%;
+    color: var(--text-color);
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+}
+.category {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #918e8e;
+    padding: 4px 0px 8px; //top - left,right - bot
+}

@@ -1,0 +1,79 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    width: 340px;
+    margin-right: 4%;
+    margin-bottom: 2.2%;
+    .title {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 18px;
+        color: #111213;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .category {
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        text-transform: capitalize;
+        color: #5bcdda;
+    }
+}
+.img {
+    width: 82.21px;
+    height: 113px;
+    margin-right: 2%;
+    border-radius: 4px;
+}
+.description {
+    width: 241px;
+    height: 32px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #8c9196;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.icon {
+    position: absolute;
+    bottom: 0px;
+    left: 28%;
+    font-size: 10px;
+    line-height: 12px;
+    font-weight: 400;
+    color: #918e8e;
+    display: flex;
+    align-items: center;
+
+    .icon-view {
+        margin-right: 10%;
+    }
+    .icon-follow {
+        margin-right: 10%;
+    }
+    .icon-date {
+        margin-right: 10%;
+    }
+}
+.btn-follow {
+    position: absolute;
+    width: 30%;
+    bottom: 0%;
+    right: 0%;
+    padding: 5px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #d72c0d;
+    cursor: pointer;
+    &:hover {
+        background-color: #ebeaea;
+        border-radius: 3px solid transparent;
+    }
+}
+.content {
+    margin-left: 4%;
+}

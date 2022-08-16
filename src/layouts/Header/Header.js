@@ -74,10 +74,10 @@ function Header({ relative = false }) {
                             </div>
                         )}
                     >
-                        <div className={cx('header-item')}>
+                        <Link to="/genres" className={cx('header-item')}>
                             <img src={categoryIcon} alt="categoryIcon" className={cx('icon')} />
                             <span className={cx('title')}>Thể loại</span>
-                        </div>
+                        </Link>
                     </Tippy>
                     <Link to="/ranking" className={cx('header-item')}>
                         <img src={bxhIcon} alt="bxhIcon" className={cx('icon')} />

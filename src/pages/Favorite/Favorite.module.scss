@@ -1,0 +1,147 @@
+.wrapper {
+    margin-top: 8%;
+    margin-left: 18%;
+    width: 64%;
+}
+.head {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-favorite {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    padding-left: 0%;
+    padding-right: 0%;
+    border: none;
+    color: #8c9196;
+    &:active {
+        font-weight: 700;
+        border-radius: 0px;
+        border-bottom: 1px solid #eb1d24;
+        color: var(--black);
+    }
+}
+.btn-history {
+    position: absolute;
+    left: 7%;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding-left: 0%;
+    padding-right: 0%;
+    color: #8c9196;
+    &:active {
+        font-weight: 700;
+        border-radius: 0px;
+        border-bottom: 1px solid #eb1d24;
+        color: var(--black);
+    }
+}
+.title {
+    text-transform: uppercase;
+    position: relative;
+    &::after {
+        content: '';
+        position: absolute;
+        border: 0.5px solid #c9cccf;
+        width: 160%;
+        bottom: -160%;
+        left: -28.5%;
+    }
+}
+.btn-delete {
+    position: absolute;
+    right: 0%;
+    color: #d72c0d;
+    &:hover {
+        font-weight: 700;
+        background-color: rgb(246, 241, 241);
+    }
+}
+.btn-del-active {
+    right: 10%;
+    .btn-cancel {
+        font-weight: 700;
+        color: #d72c0d;
+        &:hover {
+            background-color: rgb(246, 241, 241);
+        }
+    }
+    .btn-done {
+        font-weight: 700;
+        color: #458fff;
+        &:hover {
+            background-color: rgb(246, 241, 241);
+        }
+    }
+}
+.card-favorite {
+    display: flex;
+    margin-top: -5%;
+    flex-wrap: wrap;
+    width: 108%;
+}
+.card-history {
+    display: flex;
+    margin-top: -5%;
+    flex-direction: column;
+    width: 108%;
+    .img {
+        width: 152px;
+        height: 213px;
+    }
+}
+
+.noFavorite {
+    .head-img {
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .img {
+        width: 280px;
+        height: 207px;
+        font-weight: 700;
+    }
+    h1 {
+        text-transform: uppercase;
+        font-size: 16px;
+        line-height: 28px;
+        color: #8c9196;
+    }
+    .p {
+        width: 323px;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 16px;
+        color: #8c9196;
+        text-align: center;
+        a {
+            color: #458fff;
+        }
+    }
+    .container-fluid {
+        position: relative;
+        width: 70%;
+        left: 25%;
+        margin-top: 5%;
+        .card-recomment {
+            position: absolute;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-right: 5%;
+        }
+        .recomment {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 16px;
+            color: #8c9196;
+        }
+    }
+}
