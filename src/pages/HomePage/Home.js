@@ -186,6 +186,7 @@ function Home() {
                     },
                 });
                 setRankDay(res);
+                console.log(res);
             } catch (error) {
                 console.log(error);
             }

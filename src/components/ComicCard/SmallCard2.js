@@ -9,11 +9,11 @@ const cx = className.bind(styles);
 function SmallCard2({ data }) {
     return (
         <div className={cx('wrapper-small-2')}>
-            <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('card-image')}>
+            <Link to={`/comic/${data?.name}/${data?.id}`} className={cx('card-image')}>
                 <img src={data?.image || image} alt="thumnail" />
             </Link>
             <div className={cx('content')}>
-                <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('title')}>
+                <Link to={`/comic/${data?.name}/${data?.id}`} className={cx('title')}>
                     {data?.name || 'Gia sư của công tước'}
                 </Link>
                 <Link to={`/category/${data?.category}`} className={cx('category')}>

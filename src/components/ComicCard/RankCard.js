@@ -9,12 +9,12 @@ const cx = className.bind(styles);
 function RankCard({ data, rank }) {
     return (
         <div className={cx('wrapper-rank-card')}>
-            <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('card-image')}>
+            <Link to={`/comic/${data?.name}/${data?.id}`} className={cx('card-image')}>
                 <img src={data?.image || image} alt="thumnail" />
             </Link>
             <span className={cx('card-stt')}>{`0${rank}` || '00'}</span>
             <div className={cx('content')}>
-                <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('title')}>
+                <Link to={`/comic/${data?.name}/${data?.id}`} className={cx('title')}>
                     {data?.name || 'Gia sư của công tước'}
                 </Link>
                 <Link to={`/category/${data?.category}`} className={cx('category')}>
