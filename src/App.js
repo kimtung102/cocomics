@@ -17,7 +17,7 @@ function App() {
                     <Route path="/comic/:bookName/:bookId" element={<ComicInfo />} />
                     <Route path="/comic/:bookName/:bookId/:chapter" element={<ReadingPage />} />
                     <Route path="/category/:name" element={<h1>Trang Thể loại</h1>} />
-                    <Route path="/favorite" element={<Favorite />} />
+                    <Route path="/favourite" element={<Favorite />} />
                     <Route path="/genres" element={<Genres />} />
                     <Route path="/ranking" element={<Ranking />} />
                     <Route path="*" element={<h1>Page not found</h1>} />

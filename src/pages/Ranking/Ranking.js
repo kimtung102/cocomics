@@ -6,7 +6,6 @@ import CustomSelect from '../../components/Select/CustomSelect';
 import Button from '~/components/Button/Button';
 import { useEffect, useState, useRef } from 'react';
 import CardPost from '../../components/ComicCard/CardPost';
-import { Exception } from 'sass';
 
 const cx = classNames.bind(styles);
 
@@ -63,7 +62,7 @@ function Ranking() {
             });
             setCardPostDataLike(res.data);
         } catch (error) {
-            throw Exception;
+            console.log(error);
         }
     };
     const listComicByViewApi = async () => {
@@ -76,7 +75,7 @@ function Ranking() {
             });
             setCardPostDataView(res.data);
         } catch (error) {
-            throw Exception;
+            console.log(error);
         }
     };
     useEffect(() => {
