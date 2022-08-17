@@ -21,6 +21,7 @@ function ComicInfo({ data }) {
     const [index, setIndex] = useState(1);
     const [listChapter, setListChapter] = useState([]);
     const [firstChap, setFirstChap] = useState();
+    const [stt, setStt] = useState(1);
     const [book, setBook] = useState({});
     const [pagination, setPagination] = useState({
         current: 1,
@@ -30,7 +31,6 @@ function ComicInfo({ data }) {
     const [newPage, setNewPage] = useState(1);
 
     const { bookName, bookId } = useParams();
-
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
@@ -39,7 +39,7 @@ function ComicInfo({ data }) {
         const getBook = async () => {
             const res = await get('/comic-info', {
                 params: {
-                    bookId: bookId,
+                    bookId: 30,
                 },
             });
             setBook(res);
@@ -52,7 +52,7 @@ function ComicInfo({ data }) {
         const getData = async () => {
             const res = await get('/comic-chapter-list', {
                 params: {
-                    bookId: bookId,
+                    bookId: 30,
                     size: 4,
                     page: newPage,
                 },
@@ -69,9 +69,15 @@ function ComicInfo({ data }) {
     }, [newPage]);
 
     const handlePageChange = (page) => {
-        setNewPage(page);
+        setNewPage((prev) => {
+            if (page > prev) {
+                setStt(stt + 4 * (page - prev));
+            } else if (page < prev) {
+                setStt(stt - 4 * (prev - page));
+            }
+            return page;
+        });
     };
-
     return (
         <>
             <Header />
@@ -160,7 +166,7 @@ function ComicInfo({ data }) {
                             <p className={cx('chapter')}>Chapter</p>
                             <div className={cx('list-chapter')}>
                                 {listChapter.map((chapter, index) => {
-                                    return <Chapter stt={index + 1} key={chapter.id} />;
+                                    return <Chapter stt={stt + index} key={chapter.id} />;
                                 })}
                             </div>
                             <PageBar onPageChange={handlePageChange} pagination={pagination} />

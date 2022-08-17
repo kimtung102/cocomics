@@ -34,6 +34,7 @@ import RankCard from '~/components/ComicCard/RankCard';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAuth } from '~/states/userState';
 import { rankDayState, rankMonthState, rankWeekState } from '~/states/rankState';
+import { highlightWeekState } from '~/states/contentHome';
 
 const cx = className.bind(styles);
 
@@ -171,12 +172,28 @@ function Home() {
     const [rankDay, setRankDay] = useRecoilState(rankDayState);
     const [rankWeek, setRankWeek] = useRecoilState(rankWeekState);
     const [rankMonth, setRankMonth] = useRecoilState(rankMonthState);
+    const [highlightWeek, setHighlightWeek] = useRecoilState(highlightWeekState);
 
     useEffect(() => {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
     }, [isLogin]);
 
     useEffect(() => {
+        const getHighlightWeek = async () => {
+            try {
+                const res = await get('/comic-rank-like-no', {
+                    params: {
+                        orderType: 1,
+                        top: 13,
+                    },
+                });
+                setHighlightWeek(res);
+                console.log(res);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
         const getRankDay = async () => {
             try {
                 const res = await get('/comic-rank-view-no', {
@@ -186,11 +203,11 @@ function Home() {
                     },
                 });
                 setRankDay(res);
-                console.log(res);
             } catch (error) {
                 console.log(error);
             }
         };
+        getHighlightWeek();
         getRankDay();
     }, []);
 
