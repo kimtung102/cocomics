@@ -17,7 +17,7 @@ import { useParams } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function ComicInfo({ data }) {
+function ComicInfo() {
     const [index, setIndex] = useState(1);
     const [listChapter, setListChapter] = useState([]);
     const [firstChap, setFirstChap] = useState();
@@ -30,7 +30,7 @@ function ComicInfo({ data }) {
     });
     const [newPage, setNewPage] = useState(1);
 
-    const { bookName, bookId } = useParams();
+    const { bookId } = useParams();
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
@@ -39,7 +39,7 @@ function ComicInfo({ data }) {
         const getBook = async () => {
             const res = await get('/comic-info', {
                 params: {
-                    bookId: 30,
+                    bookId: bookId,
                 },
             });
             setBook(res);
@@ -52,7 +52,7 @@ function ComicInfo({ data }) {
         const getData = async () => {
             const res = await get('/comic-chapter-list', {
                 params: {
-                    bookId: 30,
+                    bookId: bookId,
                     size: 4,
                     page: newPage,
                 },
@@ -96,7 +96,7 @@ function ComicInfo({ data }) {
                             </p>
                             <span className={cx('summary')}>{book.description}</span>
                             <div className={cx('btn')}>
-                                <Button primary small to={`/comic/${book.name}/${book.id}/${listChapter[0]?.id}`}>
+                                <Button primary small to={`/comic/${book.name}/${book.id}/chap1/${listChapter[0]?.id}`}>
                                     ĐỌC NGAY
                                 </Button>
                                 <img src={heartSolid} alt="" className={cx('heart')} />
