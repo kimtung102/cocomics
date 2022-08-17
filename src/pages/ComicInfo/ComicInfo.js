@@ -20,7 +20,6 @@ const cx = className.bind(styles);
 function ComicInfo() {
     const [index, setIndex] = useState(1);
     const [listChapter, setListChapter] = useState([]);
-    const [firstChap, setFirstChap] = useState();
     const [stt, setStt] = useState(1);
     const [book, setBook] = useState({});
     const [pagination, setPagination] = useState({
@@ -30,7 +29,8 @@ function ComicInfo() {
     });
     const [newPage, setNewPage] = useState(1);
 
-    const { bookId } = useParams();
+    const { bookName, bookId } = useParams();
+
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
@@ -166,7 +166,14 @@ function ComicInfo() {
                             <p className={cx('chapter')}>Chapter</p>
                             <div className={cx('list-chapter')}>
                                 {listChapter.map((chapter, index) => {
-                                    return <Chapter stt={stt + index} key={chapter.id} />;
+                                    return (
+                                        <Chapter
+                                            stt={stt + index}
+                                            key={chapter.id}
+                                            data={{ bookName, bookId }}
+                                            chapId={listChapter[stt + index - 1]?.id}
+                                        />
+                                    );
                                 })}
                             </div>
                             <PageBar onPageChange={handlePageChange} pagination={pagination} />
