@@ -33,6 +33,7 @@ function Header({ relative = false }) {
         };
 
         getCategory();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleLoginShow = () => {
