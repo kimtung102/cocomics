@@ -13,9 +13,9 @@ import Header from '~/layouts/Header/Header';
 
 const cx = className.bind(styles);
 
-function ReadingPage({ data }) {
-    const { bookName, bookId, chapter } = useParams();
-    const [currentChapter, setCurrentChapter] = useState(chapter);
+function ReadingPage() {
+    const { bookName, bookId, chapterId } = useParams();
+    const [currentChapter, setCurrentChapter] = useState(chapterId);
     const [listPage, setListPage] = useState([]);
     const [listChapter, setListChapter] = useState([]);
     const [visible, setVisible] = useState(false);
@@ -79,15 +79,15 @@ function ReadingPage({ data }) {
                         <Link to="/">
                             <img src={logo} alt="" />
                         </Link>
-                        <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('comic-name')}>
-                            Chiến Thần Cuồng Phi
+                        <Link to={`/comic/${bookName}/${bookId}`} className={cx('comic-name')}>
+                            {bookName}
                         </Link>
                     </div>
                     <div className={cx('dropdown-group')}>
                         <Button roundedBlack leftIcon={<img src={back} alt="" />}>
                             Chap trước
                         </Button>
-                        <select className={cx('dropdown')}>
+                        <select className={cx('dropdown')} onChange={handleChangeChapter}>
                             {listChapter.map((item, index) => (
                                 <option key={index} value={item.id}>{`Chap ${index + 1}`}</option>
                             ))}
@@ -101,12 +101,12 @@ function ReadingPage({ data }) {
             )}
             <div className={cx('wrapper')}>
                 <div className={cx('top')}>
-                    <h1>Chiến Thần Cuồng Phi</h1>
+                    <h1>{bookName}</h1>
                     <p className={cx('view-wrapper')}>
-                        <span>Đăng lúc 20:13 20/12/2022</span>
+                        <span>Đăng lúc 20:13 12/08/2022</span>
                         <p className={cx('view')}>
                             <img src={eye} alt="" className={cx('icon-eye')} />
-                            <span>20.5k</span>
+                            <span>54</span>
                         </p>
                     </p>
                     <div className={cx('dropdown-group')}>

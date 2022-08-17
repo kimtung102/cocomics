@@ -17,10 +17,11 @@ import { useParams } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
-function ComicInfo({ data }) {
+function ComicInfo() {
     const [index, setIndex] = useState(1);
     const [listChapter, setListChapter] = useState([]);
     const [firstChap, setFirstChap] = useState();
+    const [stt, setStt] = useState(1);
     const [book, setBook] = useState({});
     const [pagination, setPagination] = useState({
         current: 1,
@@ -29,8 +30,7 @@ function ComicInfo({ data }) {
     });
     const [newPage, setNewPage] = useState(1);
 
-    const { bookName, bookId } = useParams();
-
+    const { bookId } = useParams();
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     }, []);
@@ -69,9 +69,15 @@ function ComicInfo({ data }) {
     }, [newPage]);
 
     const handlePageChange = (page) => {
-        setNewPage(page);
+        setNewPage((prev) => {
+            if (page > prev) {
+                setStt(stt + 4 * (page - prev));
+            } else if (page < prev) {
+                setStt(stt - 4 * (prev - page));
+            }
+            return page;
+        });
     };
-
     return (
         <>
             <Header />
@@ -90,7 +96,7 @@ function ComicInfo({ data }) {
                             </p>
                             <span className={cx('summary')}>{book.description}</span>
                             <div className={cx('btn')}>
-                                <Button primary small to={`/comic/${book.name}/${book.id}/${listChapter[0]?.id}`}>
+                                <Button primary small to={`/comic/${book.name}/${book.id}/chap1/${listChapter[0]?.id}`}>
                                     ĐỌC NGAY
                                 </Button>
                                 <img src={heartSolid} alt="" className={cx('heart')} />
@@ -160,7 +166,7 @@ function ComicInfo({ data }) {
                             <p className={cx('chapter')}>Chapter</p>
                             <div className={cx('list-chapter')}>
                                 {listChapter.map((chapter, index) => {
-                                    return <Chapter stt={index + 1} key={chapter.id} />;
+                                    return <Chapter stt={stt + index} key={chapter.id} />;
                                 })}
                             </div>
                             <PageBar onPageChange={handlePageChange} pagination={pagination} />

@@ -102,7 +102,7 @@ function Header({ relative = false }) {
                                 <p className={cx('option')}>
                                     <Link to="/user">Thông tin cá nhân</Link>
                                     <Link to="/favourite">Yêu thích</Link>
-                                    <Link to="/history">Lịch sử đọc</Link>
+                                    <Link to="/favourite">Lịch sử đọc</Link>
                                     <a href="/" onClick={(e) => handleChangePasswordShow(e)}>
                                         Đổi mật khẩu
                                     </a>
