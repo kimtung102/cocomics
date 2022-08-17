@@ -101,12 +101,12 @@ function ReadingPage() {
             )}
             <div className={cx('wrapper')}>
                 <div className={cx('top')}>
-                    <h1>Chiến Thần Cuồng Phi</h1>
+                    <h1>{bookName}</h1>
                     <p className={cx('view-wrapper')}>
-                        <span>Đăng lúc 20:13 20/12/2022</span>
+                        <span>Đăng lúc 20:13 12/08/2022</span>
                         <p className={cx('view')}>
                             <img src={eye} alt="" className={cx('icon-eye')} />
-                            <span>20.5k</span>
+                            <span>54</span>
                         </p>
                     </p>
                     <div className={cx('dropdown-group')}>
