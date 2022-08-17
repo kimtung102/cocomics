@@ -6,19 +6,24 @@ import ahead from '~/assets/images/goahead.svg';
 import eye from '~/assets/images/eye.svg';
 import logo from '~/assets/images/logo.svg';
 import { get } from '~/utils/httpRequest';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Button from '~/components/Button/Button';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Header from '~/layouts/Header/Header';
+import { useRecoilState } from 'recoil';
+import { selectedValueState } from '~/states/readingPageState';
 
 const cx = className.bind(styles);
 
 function ReadingPage() {
-    const { bookName, bookId, chapterId } = useParams();
+    const { bookName, bookId, chapterId, chapter } = useParams();
     const [currentChapter, setCurrentChapter] = useState(chapterId);
     const [listPage, setListPage] = useState([]);
     const [listChapter, setListChapter] = useState([]);
     const [visible, setVisible] = useState(false);
+    const [selectedValue, setSelectedValue] = useRecoilState(selectedValueState);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getListChapter = async () => {
@@ -45,7 +50,7 @@ function ReadingPage() {
                 },
             });
             setListPage(res);
-            console.log(res);
+            navigate(`/comic/${bookName}/${bookId}/chap${selectedValue}/${currentChapter}`);
         };
 
         getPage();
@@ -66,9 +71,20 @@ function ReadingPage() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleChangeChapter = (e) => {
-        setCurrentChapter(e.target.value);
-    };
+    useEffect(() => {
+        setCurrentChapter(listChapter[selectedValue - 1]?.id);
+    }, [selectedValue]);
+
+    const handleChangeChapter = useCallback((e) => {
+        setSelectedValue(Number(e.target.value));
+    }, []);
+
+    const handleNextChapter = useCallback(() => {
+        setSelectedValue((prev) => prev + 1);
+    }, []);
+    const handlePrevChapter = useCallback(() => {
+        setSelectedValue((prev) => prev - 1);
+    }, []);
 
     return (
         <>
@@ -84,15 +100,29 @@ function ReadingPage() {
                         </Link>
                     </div>
                     <div className={cx('dropdown-group')}>
-                        <Button roundedBlack leftIcon={<img src={back} alt="" />}>
+                        <Button
+                            disabled={selectedValue === 1}
+                            roundedBlack
+                            leftIcon={<img src={back} alt="" />}
+                            onClick={handlePrevChapter}
+                        >
                             Chap trước
                         </Button>
-                        <select className={cx('dropdown')} onChange={handleChangeChapter}>
+                        <select
+                            className={cx('dropdown')}
+                            onChange={(e) => handleChangeChapter(e)}
+                            value={selectedValue}
+                        >
                             {listChapter.map((item, index) => (
-                                <option key={index} value={item.id}>{`Chap ${index + 1}`}</option>
+                                <option key={item.id} value={index + 1}>{`Chap ${index + 1}`}</option>
                             ))}
                         </select>
-                        <Button primary rightIcon={<img src={ahead} alt="" />}>
+                        <Button
+                            disabled={selectedValue === listChapter.length}
+                            primary
+                            rightIcon={<img src={ahead} alt="" />}
+                            onClick={handleNextChapter}
+                        >
                             Chap sau
                         </Button>
                     </div>
@@ -110,15 +140,29 @@ function ReadingPage() {
                         </p>
                     </p>
                     <div className={cx('dropdown-group')}>
-                        <Button roundedBlack leftIcon={<img src={back} alt="" />}>
+                        <Button
+                            disabled={selectedValue === 1}
+                            roundedBlack
+                            leftIcon={<img src={back} alt="" />}
+                            onClick={handlePrevChapter}
+                        >
                             Chap trước
                         </Button>
-                        <select className={cx('dropdown')} onChange={(e) => handleChangeChapter(e)}>
+                        <select
+                            className={cx('dropdown')}
+                            onChange={(e) => handleChangeChapter(e)}
+                            value={selectedValue}
+                        >
                             {listChapter.map((item, index) => (
-                                <option key={index} value={item.id}>{`Chap ${index + 1}`}</option>
+                                <option key={item.id} value={index + 1}>{`Chap ${index + 1}`}</option>
                             ))}
                         </select>
-                        <Button primary rightIcon={<img src={ahead} alt="" />}>
+                        <Button
+                            disabled={selectedValue === listChapter.length}
+                            primary
+                            rightIcon={<img src={ahead} alt="" />}
+                            onClick={handleNextChapter}
+                        >
                             Chap sau
                         </Button>
                     </div>
@@ -130,14 +174,6 @@ function ReadingPage() {
                         ))}
                     </div>
                 </div>
-                {/* <div className={cx('bottom')}>
-                    <Button roundedBlack leftIcon={<img src={back} alt="" />}>
-                        Chap trước
-                    </Button>
-                    <Button primary rightIcon={<img src={ahead} alt="" />}>
-                        Chap sau
-                    </Button>
-                </div> */}
             </div>
             <Footer />
         </>
