@@ -4,8 +4,7 @@ import styles from './Genres.module.scss';
 import Header from '~/layouts/Header/Header';
 import Button from '~/components/Button/Button';
 import axios from 'axios';
-import CardGenres from '../../components/ComicCard/CardGenres';
-import Paginations from '~/components/Pagination/PageBar';
+import CardGenres from '~/components/ComicCard/CardGenres';
 
 const cx = classNames.bind(styles);
 
@@ -31,7 +30,7 @@ function Genres() {
     const [cardGenres, setCardGenres] = useState([]);
     const [allComic, setAllComic] = useState([]);
     const [filterAllChooseFirst, setFilterAllChooseFirst] = useState(true);
-    const [numberPage, setNumberPage] = useState(1);
+    const [numberPage] = useState(1);
     const [sortByFilter, setSortByFilter] = useState(1);
     const postPage = 10;
 
@@ -82,6 +81,7 @@ function Genres() {
 
     useEffect(() => {
         listCardGenres();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [idCate, reRender]);
 
     const listCategory = async () => {
@@ -100,6 +100,7 @@ function Genres() {
     }, []);
     useEffect(() => {
         listAllComic();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [numberPage]);
     return (
         <Fragment>

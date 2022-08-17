@@ -2,10 +2,10 @@ import classNames from 'classnames/bind';
 import axios from 'axios';
 import styles from './Ranking.module.scss';
 import Header from '~/layouts/Header/Header';
-import CustomSelect from '../../components/Select/CustomSelect';
+import CustomSelect from '~/components/Select/CustomSelect';
 import Button from '~/components/Button/Button';
 import { useEffect, useState, useRef } from 'react';
-import CardPost from '../../components/ComicCard/CardPost';
+import CardPost from '~/components/ComicCard/CardPost';
 
 const cx = classNames.bind(styles);
 
