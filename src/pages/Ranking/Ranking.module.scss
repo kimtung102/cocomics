@@ -1,0 +1,80 @@
+.wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+}
+.inner {
+    margin-top: 5%;
+    // margin-left: -8%;
+}
+
+.content {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.dropdown {
+    width: 100%;
+    height: 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    border-style: none;
+    color: #2e72d2;
+}
+.title-ranked {
+    display: flex;
+    margin-left: 31%;
+    justify-content: space-around;
+    width: 90%;
+    align-items: center;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+}
+.title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 32px;
+    margin-left: -267px;
+}
+.sidebar {
+    position: relative;
+    width: 219px;
+    height: 256px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    &::after {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 0px;
+        bottom: 75%;
+        left: 5%;
+        border: 0.5px solid #c9cccf;
+    }
+}
+.sidebar-tag {
+    position: relative;
+    top: 20%;
+}
+.card {
+    width: 756px;
+
+    .post {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        .card-post {
+            position: relative;
+        }
+    }
+}

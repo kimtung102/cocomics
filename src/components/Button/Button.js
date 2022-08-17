@@ -24,6 +24,16 @@ function Button({
     leftIcon,
     rightIcon,
     onClick,
+
+    label,
+    active = false,
+    hide = false,
+    choose = false,
+    outline = false,
+    noOutline = false,
+    tag = false,
+    circle = false,
+    underline = false,
     ...passProps
 }) {
     let Comp = 'button';
@@ -61,6 +71,16 @@ function Button({
         keyword,
         small,
         grey,
+
+        label,
+        active,
+        hide,
+        choose,
+        outline,
+        noOutline,
+        tag,
+        circle,
+        underline,
     });
 
     return (

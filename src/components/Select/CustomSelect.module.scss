@@ -1,0 +1,16 @@
+.select {
+    width: 100%;
+    min-width: 100px;
+    height: 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    border-style: none;
+    border-color: transparent;
+    color: #2e72d2;
+    cursor: pointer;
+    &:focus-visible {
+        outline: none;
+    }
+}

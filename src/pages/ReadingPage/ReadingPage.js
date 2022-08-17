@@ -8,28 +8,48 @@ import logo from '~/assets/images/logo.svg';
 import { get } from '~/utils/httpRequest';
 import { useEffect, useState } from 'react';
 import Button from '~/components/Button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '~/layouts/Header/Header';
 
 const cx = className.bind(styles);
 
 function ReadingPage({ data }) {
-    const [chapter, setChapter] = useState([]);
+    const { bookName, bookId, chapter } = useParams();
+    const [currentChapter, setCurrentChapter] = useState(chapter);
+    const [listPage, setListPage] = useState([]);
+    const [listChapter, setListChapter] = useState([]);
     const [visible, setVisible] = useState(false);
+
+    useEffect(() => {
+        const getListChapter = async () => {
+            const res = await get('/comic-chapter-list', {
+                params: {
+                    bookId: bookId,
+                    size: 2000,
+                    page: 1,
+                    sortOder: 1,
+                },
+            });
+            const data = JSON.parse(res);
+            setListChapter(data.chapters);
+        };
+
+        getListChapter();
+    }, []);
 
     useEffect(() => {
         const getPage = async () => {
             const res = await get('/comic-chapter-guest', {
                 params: {
-                    chapterId: '4E373577-D719-4092-9264-6BF0B100CAA6',
+                    chapterId: currentChapter,
                 },
             });
-            setChapter(res);
+            setListPage(res);
             console.log(res);
         };
 
         getPage();
-    }, []);
+    }, [currentChapter]);
 
     useEffect(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -45,6 +65,10 @@ function ReadingPage({ data }) {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    const handleChangeChapter = (e) => {
+        setCurrentChapter(e.target.value);
+    };
 
     return (
         <>
@@ -64,8 +88,9 @@ function ReadingPage({ data }) {
                             Chap trước
                         </Button>
                         <select className={cx('dropdown')}>
-                            <option>Chapter 1: Linh hồn bất diệt</option>
-                            <option>Chapter 2: Linh hồn bất diệt</option>
+                            {listChapter.map((item, index) => (
+                                <option key={index} value={item.id}>{`Chap ${index + 1}`}</option>
+                            ))}
                         </select>
                         <Button primary rightIcon={<img src={ahead} alt="" />}>
                             Chap sau
@@ -88,14 +113,10 @@ function ReadingPage({ data }) {
                         <Button roundedBlack leftIcon={<img src={back} alt="" />}>
                             Chap trước
                         </Button>
-                        <select className={cx('dropdown')}>
-                            <option>Chapter 1: Linh hồn bất diệt</option>
-                            <option>Chapter 2: Linh hồn bất diệt</option>
-                            <option>Chapter 3: Linh hồn bất diệt</option>
-                            <option>Chapter 4: Linh hồn bất diệt</option>
-                            <option>Chapter 5: Linh hồn bất diệt</option>
-                            <option>Chapter 6: Linh hồn bất diệt</option>
-                            <option>Chapter 7: Linh hồn bất diệt</option>
+                        <select className={cx('dropdown')} onChange={(e) => handleChangeChapter(e)}>
+                            {listChapter.map((item, index) => (
+                                <option key={index} value={item.id}>{`Chap ${index + 1}`}</option>
+                            ))}
                         </select>
                         <Button primary rightIcon={<img src={ahead} alt="" />}>
                             Chap sau
@@ -104,13 +125,8 @@ function ReadingPage({ data }) {
                 </div>
                 <div className={cx('inner')}>
                     <div className={cx('content')}>
-                        {chapter.map((item, index) => (
-                            <img
-                                src={item?.pageImgUrl ? item.pageImgUrl : ''}
-                                alt=""
-                                key={index}
-                                className={cx('image')}
-                            />
+                        {listPage.map((item, index) => (
+                            <img src={item.pageImgUrl} alt="" key={index} className={cx('image')} />
                         ))}
                     </div>
                 </div>
