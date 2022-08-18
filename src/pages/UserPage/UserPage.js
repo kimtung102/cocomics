@@ -2,7 +2,7 @@ import className from 'classnames/bind';
 import styles from './UserPage.module.scss';
 
 import Header from '~/layouts/Header/Header';
-import avatar from '~/assets/images/user-avatar.svg';
+import m_avatar from '~/assets/images/user-avatar.png';
 import camera from '~/assets/images/camera-icon.svg';
 import camera2 from '~/assets/images/camera-icon2.svg';
 import coverImage from '~/assets/images/cover-image.svg';
@@ -11,11 +11,15 @@ import mappin from '~/assets/images/mappin-icon.svg';
 import Button from '~/components/Button/Button';
 import Footer from '~/layouts/Footer/Footer';
 import { useState, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { userInfoState } from '~/states/userState';
 
 const cx = className.bind(styles);
 
 function UserPage() {
+    const [avatar, setAvatar] = useState();
     const [isUpdate, setIsUpdate] = useState(false);
+    const userInfo = useRecoilValue(userInfoState);
 
     useEffect(() => {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
@@ -26,6 +30,18 @@ function UserPage() {
         window.scrollTo({ left: 0, top: 440, behavior: 'smooth' });
     };
 
+    useEffect(() => {
+        return () => {
+            avatar && URL.revokeObjectURL(avatar.preview);
+        };
+    }, [avatar]);
+
+    const handleChangeAvatar = (e) => {
+        const file = e.target.files[0];
+        file.preview = URL.createObjectURL(file);
+        setAvatar(file);
+    };
+
     return (
         <>
             <Header />
@@ -34,12 +50,17 @@ function UserPage() {
                     <div className={cx('cover-image')}>
                         <div className={cx('overlay')}></div>
                         <img src={coverImage} alt="anh bia" />
-                        <div className={cx('avatar')}>
-                            <img src={avatar} alt="" />
+                        <div className={cx('avatar-wrapper')}>
+                            <img
+                                src={userInfo?.nickName || (avatar && avatar.preview) || m_avatar}
+                                alt=""
+                                className={cx('avatar')}
+                            />
                         </div>
-                        <div className={cx('camera')}>
+                        <label className={cx('camera')}>
                             <img src={camera} alt="" />
-                        </div>
+                            <input type="file" onChange={(e) => handleChangeAvatar(e)} style={{ display: 'none' }} />
+                        </label>
                         <div className={cx('btn-cover-image')}>
                             <Button leftIcon={<img src={camera2} alt="" />} grey>
                                 Thay ảnh bìa
@@ -47,8 +68,8 @@ function UserPage() {
                         </div>
                     </div>
                     <div className={cx('info')}>
-                        <p className={cx('username')}>thedc123233</p>
-                        <p className={cx('id')}>ID: 12213001023</p>
+                        <p className={cx('username')}>{userInfo?.username}</p>
+                        <p className={cx('id')}>ID: {userInfo?.id}</p>
                         <div className={cx('sub-info')}>
                             <span className={cx('id')}>
                                 <img src={calendar} alt="calendar" />

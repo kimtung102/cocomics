@@ -16,7 +16,7 @@ import { selectedValueState } from '~/states/readingPageState';
 const cx = className.bind(styles);
 
 function ReadingPage() {
-    const { bookName, bookId, chapterId, chapter } = useParams();
+    const { bookName, bookId, chapterId } = useParams();
     const [currentChapter, setCurrentChapter] = useState(chapterId);
     const [listPage, setListPage] = useState([]);
     const [listChapter, setListChapter] = useState([]);
@@ -51,6 +51,7 @@ function ReadingPage() {
             });
             setListPage(res);
             navigate(`/comic/${bookName}/${bookId}/chap${selectedValue}/${currentChapter}`);
+            window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         };
 
         getPage();
