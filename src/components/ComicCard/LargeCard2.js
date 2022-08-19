@@ -16,63 +16,143 @@ import { Link } from 'react-router-dom';
 
 const cx = className.bind(styles);
 
+const comicDefault = [
+    {
+        id: 1,
+        name: 'Đại học siêu nhiên',
+        category: 'Phiêu lưu',
+        image: image1,
+    },
+    {
+        id: 2,
+        name: 'Thuyết tiến hóa',
+        category: 'Viễn tưởng',
+        image: image2,
+    },
+    {
+        id: 3,
+        name: 'Chiến binh cuối cùng',
+        category: 'Hành động',
+        image: image3,
+    },
+    {
+        id: 4,
+        name: 'Siêu hệ thống khải huyền',
+        category: 'Kinh dị',
+        image: image4,
+    },
+    {
+        id: 5,
+        name: 'Chiến binh vô song',
+        category: 'Hành động',
+        image: image5,
+    },
+    {
+        id: 6,
+        name: 'Con đường tự do',
+        category: 'Phiêu lưu',
+        image: image6,
+    },
+    {
+        id: 7,
+        name: 'Tái sinh Predator',
+        category: 'Viễn tưởng',
+        image: image7,
+    },
+    {
+        id: 8,
+        name: 'Tổng tài tại thượng',
+        category: 'Ngôn tình',
+        image: image8,
+    },
+    {
+        id: 9,
+        name: 'Sự trỗi dậy của Lucy',
+        category: 'Kịch tính',
+        image: image9,
+    },
+];
+
 function LargeCard2({ data }) {
-    const [index, setIndex] = useState(1);
+    const [vIndex, setVIndex] = useState(1);
 
     return (
         <div className={cx('wrapper-large-2')}>
             <div className={cx('list-image')}>
-                <span className={cx('image-item', index === 1 ? 'active' : 'noActive')}>
-                    <img src={image1} alt="#" onClick={() => setIndex(1)} />
-                </span>
-                <span className={cx('image-item', index === 2 ? 'active' : 'noActive')}>
-                    <img src={image2} alt="#" onClick={() => setIndex(2)} />
-                </span>
-                <span className={cx('image-item', index === 3 ? 'active' : 'noActive')}>
-                    <img src={image3} alt="#" onClick={() => setIndex(3)} />
-                </span>
-                <span className={cx('image-item', index === 4 ? 'active' : 'noActive')}>
-                    <img src={image4} alt="#" onClick={() => setIndex(4)} />
-                </span>
-                <span className={cx('image-item', index === 5 ? 'active' : 'noActive')}>
-                    <img src={image5} alt="#" onClick={() => setIndex(5)} />
-                </span>
-                <span className={cx('image-item', index === 6 ? 'active' : 'noActive')}>
-                    <img src={image6} alt="#" onClick={() => setIndex(6)} />
-                </span>
-                <span className={cx('image-item', index === 7 ? 'active' : 'noActive')}>
-                    <img src={image7} alt="#" onClick={() => setIndex(7)} />
-                </span>
-                <span className={cx('image-item', index === 8 ? 'active' : 'noActive')}>
-                    <img src={image8} alt="#" onClick={() => setIndex(8)} />
-                </span>
-                <span className={cx('image-item', index === 9 ? 'active' : 'noActive')}>
-                    <img src={image9} alt="#" onClick={() => setIndex(9)} />
-                </span>
+                {data.length > 0
+                    ? data.map((item, index) => (
+                          <span className={cx('image-item', vIndex === index + 1 ? 'active' : 'noActive')}>
+                              <img src={item.image} alt="#" onClick={() => setVIndex(index + 1)} />
+                          </span>
+                      ))
+                    : comicDefault.map((item, index) => (
+                          <span className={cx('image-item', vIndex === index + 1 ? 'active' : 'noActive')}>
+                              <img src={item.image} alt="#" onClick={() => setVIndex(index + 1)} />
+                          </span>
+                      ))}
             </div>
-            <div className={cx('content-wrapper')}>
-                <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('main-image')}>
-                    <img src={image1} alt="#" />
-                </Link>
-                <div className={cx('card-body')}>
-                    <Link to={`/comic/${data?.name}/${data?.bookId}`} className={cx('content-title')}>
-                        Kinh nghiệm cảnh nóng
+            {data.length > 0 ? (
+                <div className={cx('content-wrapper')}>
+                    <Link to={`/comic/${data[vIndex - 1]?.name}/${data[vIndex - 1]?.id}`} className={cx('main-image')}>
+                        <img src={data[vIndex - 1]?.image} alt="#" />
                     </Link>
-                    <Link to={`/category/${data?.category}`} className={cx('content-category')}>
-                        Boy Love
-                    </Link>
-                    <span className={cx('content-summary')}>
-                        Tae Gyum sau khi phát hiện mình là một Alpha trội gặp tai họa khi vô tình khiến một Omega phát
-                        tình, cậu trở nên né tránh là một Alpha trội gặp tai họa khi vô tình khiến một Omega phát tình,
-                        cậu trở nên né tránh
-                    </span>
-                    <span>
-                        <Button primary small to={`/comic/${data?.name}/${data?.bookId}/chapter-1`}>
-                            Đọc ngay
-                        </Button>
-                    </span>
+                    <div className={cx('card-body')}>
+                        <Link
+                            to={`/comic/${data[vIndex - 1]?.name}/${data[vIndex - 1]?.id}`}
+                            className={cx('content-title')}
+                        >
+                            {data[vIndex - 1]?.name}
+                        </Link>
+                        <Link to={`/category/${data[vIndex - 1]?.category}`} className={cx('content-category')}>
+                            {data[vIndex - 1]?.category || 'Fantasy'}
+                        </Link>
+                        <span className={cx('content-summary')}>
+                            Tae Gyum sau khi phát hiện mình là một Alpha trội gặp tai họa khi vô tình khiến một Omega
+                            phát tình, cậu trở nên né tránh là một Alpha trội gặp tai họa khi vô tình khiến một Omega
+                            phát tình, cậu trở nên né tránh
+                        </span>
+                        <span>
+                            <Button primary small to={`/comic/${data[vIndex - 1]?.name}/${data[vIndex - 1]?.id}`}>
+                                Đọc ngay
+                            </Button>
+                        </span>
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <div className={cx('content-wrapper')}>
+                    <Link
+                        to={`/comic/${comicDefault[vIndex - 1].name}/${comicDefault[vIndex - 1].id}`}
+                        className={cx('main-image')}
+                    >
+                        <img src={comicDefault[vIndex - 1].image} alt="#" />
+                    </Link>
+                    <div className={cx('card-body')}>
+                        <Link
+                            to={`/comic/${comicDefault[vIndex - 1].name}/${comicDefault[vIndex - 1].id}`}
+                            className={cx('content-title')}
+                        >
+                            {comicDefault[vIndex - 1].name}
+                        </Link>
+                        <Link to={`/category/${comicDefault[vIndex - 1].category}`} className={cx('content-category')}>
+                            {comicDefault[vIndex - 1].category || 'Fantasy'}
+                        </Link>
+                        <span className={cx('content-summary')}>
+                            Tae Gyum sau khi phát hiện mình là một Alpha trội gặp tai họa khi vô tình khiến một Omega
+                            phát tình, cậu trở nên né tránh là một Alpha trội gặp tai họa khi vô tình khiến một Omega
+                            phát tình, cậu trở nên né tránh
+                        </span>
+                        <span>
+                            <Button
+                                primary
+                                small
+                                to={`/comic/${comicDefault[vIndex - 1].name}/${comicDefault[vIndex - 1].id}`}
+                            >
+                                Đọc ngay
+                            </Button>
+                        </span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
