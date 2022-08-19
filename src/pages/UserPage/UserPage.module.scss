@@ -30,7 +30,7 @@
         object-fit: fill;
     }
 
-    .avatar {
+    .avatar-wrapper {
         position: absolute;
         bottom: -65px;
         left: 100px;
@@ -39,6 +39,11 @@
         width: 150px;
         height: 150px;
         background-color: #b6b6b6;
+
+        .avatar {
+            border-radius: 50%;
+            object-fit: cover;
+        }
     }
 
     .camera {

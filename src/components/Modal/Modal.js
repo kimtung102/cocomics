@@ -9,12 +9,12 @@ import { Formik, Form } from 'formik';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
-import { useRecoilState } from 'recoil';
-import { userAuth } from '~/states/userState';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userAuth, userInfoState, userIdState } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import InputField from './InputField';
 import { useNavigate } from 'react-router-dom';
-
+import { get } from '~/utils/httpRequest';
 const cx = className.bind(styles);
 
 const schemaLogin = yup.object().shape({
@@ -38,8 +38,9 @@ const schemaChangePass = yup.object().shape({
 });
 
 function Modal({ popup }) {
-    const [p, setP] = useRecoilState(popupState);
-    const [isLogin, setIsLogin] = useRecoilState(userAuth);
+    const setP = useSetRecoilState(popupState);
+    const setIsLogin = useSetRecoilState(userAuth);
+    const setUserId = useSetRecoilState(userIdState);
 
     let navigate = useNavigate();
 
@@ -51,6 +52,7 @@ function Modal({ popup }) {
             window.localStorage.setItem('isLogin', true);
             const login = window.localStorage.getItem('isLogin');
             setIsLogin(login);
+            setUserId(res.userId);
             navigate('/');
         } else {
             alert('Tài khoản hoặc mật khẩu không chính xác!');

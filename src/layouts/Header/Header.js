@@ -7,8 +7,8 @@ import bxhIcon from '~/assets/images/bxh-icon.svg';
 import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import Search from '~/components/Search/Search';
-import { useRecoilState } from 'recoil';
-import { userAuth } from '~/states/userState';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { userAuth, userIdState, userInfoState } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';
 import { useEffect } from 'react';
@@ -23,6 +23,8 @@ function Header({ relative = false }) {
     const [popup, setPopup] = useRecoilState(popupState);
     const [isLogin, setIsLogin] = useRecoilState(userAuth);
     const [category, setCategory] = useRecoilState(categoryState);
+    const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+    const userId = useRecoilValue(userIdState);
 
     const navigate = useNavigate();
 
@@ -35,6 +37,23 @@ function Header({ relative = false }) {
         getCategory();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        const getUserInfo = async () => {
+            const res = await get('/cms-search-user', {
+                params: {
+                    userId,
+                },
+            });
+            console.log(res);
+            setUserInfo(res[0]);
+        };
+
+        if (userId !== '') {
+            getUserInfo();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLogin]);
 
     const handleLoginShow = () => {
         setPopup(1);
@@ -93,10 +112,14 @@ function Header({ relative = false }) {
                         render={(attrs) => (
                             <div className={cx('user-popover')} tabIndex="-1" {...attrs}>
                                 <div className={cx('info')}>
-                                    <img src={avatar} alt="nguyen van a" className={cx('user-avatar')}></img>
+                                    <img
+                                        src={userInfo?.nickName || avatar}
+                                        alt="nguyen van a"
+                                        className={cx('user-avatar')}
+                                    ></img>
                                     <div className={cx('info-text')}>
-                                        <p className={cx('username')}>thedc123233</p>
-                                        <p className={cx('id')}>ID: 12213001023</p>
+                                        <p className={cx('username')}>{userInfo?.username}</p>
+                                        <p className={cx('id')}>ID: {userInfo?.id}</p>
                                     </div>
                                 </div>
                                 <p className={cx('option')}>
