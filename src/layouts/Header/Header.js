@@ -7,7 +7,7 @@ import bxhIcon from '~/assets/images/bxh-icon.svg';
 import Button from '~/components/Button/Button';
 import Modal from '~/components/Modal/Modal';
 import Search from '~/components/Search/Search';
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAuth, userIdState, userInfoState } from '~/states/userState';
 import { popupState } from '~/states/popupState';
 import Tippy from '@tippyjs/react/headless';

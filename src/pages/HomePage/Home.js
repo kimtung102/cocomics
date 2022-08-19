@@ -34,7 +34,7 @@ import RankCard from '~/components/ComicCard/RankCard';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userAuth } from '~/states/userState';
 import { rankDayState, rankMonthState, rankWeekState } from '~/states/rankState';
-import { highlightWeekState } from '~/states/contentHome';
+import { highlightWeekState, comicLatestState, comicRisingState } from '~/states/contentHome';
 
 const cx = className.bind(styles);
 
@@ -173,6 +173,8 @@ function Home() {
     const [rankWeek, setRankWeek] = useRecoilState(rankWeekState);
     const [rankMonth, setRankMonth] = useRecoilState(rankMonthState);
     const [highlightWeek, setHighlightWeek] = useRecoilState(highlightWeekState);
+    const [comicLatest, setComicLatest] = useRecoilState(comicLatestState);
+    const [comicRising, setComicRising] = useRecoilState(comicRisingState);
 
     useEffect(() => {
         window.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
@@ -181,19 +183,51 @@ function Home() {
     useEffect(() => {
         const getHighlightWeek = async () => {
             try {
-                const res = await get('/comic-rank-like-no', {
+                const res = await get('/search-comic-by-cate', {
                     params: {
-                        orderType: 1,
-                        top: 13,
+                        cateId: 3,
+                        orderBy: 3,
                     },
                 });
-                setHighlightWeek(res);
-                console.log(res);
+
+                const data = res.slice(0, 10);
+                setHighlightWeek(data);
             } catch (error) {
                 console.log(error);
             }
         };
 
+        const getComicRising = async () => {
+            try {
+                const res = await get('/search-comic-by-cate', {
+                    params: {
+                        cateId: 12,
+                        orderBy: 3,
+                    },
+                });
+                const data = res.slice(0, 9);
+                setComicRising(data);
+                console.log('1', res);
+                console.log('2', data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const getComicLatest = async () => {
+            try {
+                const res = await get('/search-comic-by-cate', {
+                    params: {
+                        cateId: 22,
+                        orderBy: 3,
+                    },
+                });
+                const data = res.slice(0, 8);
+                setComicLatest(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
         const getRankDay = async () => {
             try {
                 const res = await get('/comic-rank-view-no', {
@@ -207,11 +241,7 @@ function Home() {
                 console.log(error);
             }
         };
-        getHighlightWeek();
-        getRankDay();
-    }, []);
 
-    useEffect(() => {
         const getRankWeek = async () => {
             try {
                 const res = await get('/comic-rank-view-no', {
@@ -225,10 +255,7 @@ function Home() {
                 console.log(error);
             }
         };
-        getRankWeek();
-    }, []);
 
-    useEffect(() => {
         const getRankMonth = async () => {
             try {
                 const res = await get('/comic-rank-view-no', {
@@ -242,7 +269,14 @@ function Home() {
                 console.log(error);
             }
         };
+
+        getHighlightWeek();
+        getComicRising();
+        getComicLatest();
+        getRankDay();
+        getRankWeek();
         getRankMonth();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -256,9 +290,9 @@ function Home() {
                         <div className={cx('trending-inner')}>
                             <Card />
                             <div className={cx('list-comic')}>
-                                {listSmallCard1.map((data, index) => (
-                                    <SmallCard1 data={data} key={index} />
-                                ))}
+                                {highlightWeek.length > 0
+                                    ? highlightWeek.map((data, index) => <SmallCard1 data={data} key={data.id} />)
+                                    : listSmallCard1.map((data, index) => <SmallCard1 data={data} key={index} />)}
                             </div>
                         </div>
                     </div>
@@ -298,7 +332,7 @@ function Home() {
                     <div className={cx('funny-wrapper')}>
                         <div className={cx('left')}>
                             <p className={cx('title-no-border')}>Truyện hư cấu đang lên</p>
-                            <LargeCard2 />
+                            <LargeCard2 data={comicRising} />
                         </div>
                         <div className={cx('right')}>
                             <p className={cx('title')}>Recommend</p>
@@ -312,9 +346,9 @@ function Home() {
                     <div className={cx('new-comic')}>
                         <p className={cx('title')}>Truyện mới cập nhật</p>
                         <div className={cx('new-inner')}>
-                            {newComicList.map((data, index) => (
-                                <SmallCard1 data={data} key={index} />
-                            ))}
+                            {comicLatest.length > 0
+                                ? comicLatest.map((data, index) => <SmallCard1 data={data} key={index} />)
+                                : newComicList.map((data, index) => <SmallCard1 data={data} key={index} />)}
                         </div>
                     </div>
                     <div className={cx('keyword')}>
